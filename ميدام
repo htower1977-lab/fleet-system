@@ -1,0 +1,16 @@
+return;
+  const r = new FileReader();
+  r.onload = ev => {
+    try {
+      appData = Object.assign(appData, JSON.parse(ev.target.result));
+      saveAndSync();
+      alert("تمت استعادة البيانات بنجاح!");
+    } catch(err) { alert("ملف غير صالح"); }
+  };
+  r.readAsText(f);
+}
+
+renderAll();
+</script>
+</body>
+</
