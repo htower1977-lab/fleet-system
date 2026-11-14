@@ -34,7 +34,7 @@
 </style>
 </head>
 <body>
-<div id="lock"><div class="lc"><div style="font-size:32px;margin-bottom:8px">🔐</div><h2 style="color:#E8CFA0">ميدان العز للنقليات</h2><p style="font-size:13px;opacity:.75;margin-top:4px">مساحة الإدارة السحابية</p><input type="password" id="pin" class="li" placeholder="2026" inputmode="numeric"><button class="lb" onclick="go()">دخول النظام</button><p id="err" style="color:#FF7B7B;font-size:12px;margin-top:8px;display:none">الرمز غير صحيح (الافتراضي: 2026)</p></div></div>
+<div id="lock"><div class="lc"><div style="font-size:32px;margin-bottom:8px">🔐</div><h2 style="color:#E8CFA0">ميدان العز للنقليات</h2><p style="font-size:13px;opacity:.75;margin-top:4px">مساحة الإدارة السحابية</p><input type="password" id="pin" class="li" placeholder="2026" inputmode="numeric"><button class="lb" onclick="go()">دخول النظام</button><p id="err" style="color:#FF7B7B;font-size:12px;margin-top:8px;display:none">الرمز غير صحيح</p></div></div>
 <header><div style="display:flex;gap:8px"><button class="ib" onclick="pg('alerts')">🔔</button><button class="ib" onclick="pg('set')">⚙️</button></div><div style="text-align:left"><h1 style="font-size:20px;color:#E8CFA0">ميدان العز</h1><p style="font-size:12px;opacity:.75">للنقليات • مساحة الإدارة</p><div class="sy" id="st">☁️ متزامن مع Google</div></div></header>
 <main>
   <div id="pg-home" class="pg act">
@@ -45,23 +45,14 @@
     <div class="g2">
       <div class="dc" onclick="pg('fleet')"><div class="di">🚐</div><h4>الأسطول</h4><small id="sf" style="color:var(--m)">0 مركبات</small></div>
       <div class="dc" onclick="pg('acc')"><div class="di">📄</div><h4>الحسابات</h4><small id="sa" style="color:var(--m)">0 قيود</small></div>
-      <div class="dc" onclick="pg('alerts')"><div class="di">🔔</div><h4>التنبيهات</h4><small style="color:var(--m)">الوثائق</small></div>
+      <div class="dc" onclick="pg('alerts')"><div class="di">🔔</div><h4>التنبيهات</h4><small id="subAlerts" style="color:var(--m)">الوثائق</small></div>
       <div class="dc" onclick="pg('cli')"><div class="di">👥</div><h4>المشتركون</h4><small id="sc" style="color:var(--m)">0 عملاء</small></div>
     </div>
     <div style="text-align:center;margin-top:18px"><button onclick="out()" style="background:none;border:none;color:var(--p);font-weight:700;cursor:pointer">🔒 تسجيل الخروج</button></div>
   </div>
-  <div id="pg-fleet" class="pg"><h3 style="color:var(--p);margin-bottom:10px">إدارة الأسطول</h3><div class="cd"><div class="g2"><input id="vp" class="in" placeholder="رقم اللوحة"><input id="vm" class="in" placeholder="نوع المركبة"></div><div class="g2"><input id="vd" class="in" placeholder="اسم السائق"><input id="vx" type="date" class="in"></div><button class="b1" onclick="addV()">+ إضافة مركبة</button></div><div id="lv"></div></div>
-  <div id="pg-acc" class="pg"><h3 style="color:var(--p);margin-bottom:10px">الحسابات</h3><div class="cd"><div class="g2"><select id="at" class="in"><option value="إيراد">إيراد (+)</option><option value="مصروف">مصروف (-)</option></select><input id="aa" type="number" class="in" placeholder="المبلغ"></div><div class="g2"><input id="al" class="in" placeholder="البيان"><input id="ad" type="date" class="in"></div><button class="b1" onclick="addA()">حفظ القيد</button></div><div id="la"></div></div>
-  <div id="pg-cli" class="pg"><h3 style="color:var(--p);margin-bottom:10px">المشتركون</h3><div class="cd"><div class="g2"><input id="cn" class="in" placeholder="اسم المشترك"><input id="cp" class="in" placeholder="الجوال"></div><div class="g2"><input id="cl" class="in" placeholder="الاشتراك"><input id="cf" type="number" class="in" placeholder="القيمة"></div><button class="b1" onclick="addC()">+ إضافة مشترك</button></div><div id="lc"></div></div>
+  <div id="pg-fleet" class="pg"><h3 style="color:var(--p);margin-bottom:10px">إدارة الأسطول</h3><div class="cd"><div class="g2"><input id="vp" class="inp" placeholder="رقم اللوحة"><input id="vm" class="inp" placeholder="نوع المركبة"></div><div class="g2"><input id="vd" class="inp" placeholder="اسم السائق"><input id="vx" type="date" class="inp"></div><button class="b1" onclick="addV()">+ إضافة مركبة</button></div><div id="lv"></div></div>
+  <div id="pg-acc" class="pg"><h3 style="color:var(--p);margin-bottom:10px">الحسابات</h3><div class="card"><div class="g2"><select id="at" class="inp"><option value="إيراد">إيراد (+)</option><option value="مصروف">مصروف (-)</option></select><input id="aa" type="number" class="inp" placeholder="المبلغ"></div><div class="g2"><input id="al" class="inp" placeholder="البيان"><input id="ad" type="date" class="inp"></div><button class="b1" onclick="addA()">حفظ القيد</button></div><div id="la"></div></div>
+  <div id="pg-cli" class="pg"><h3 style="color:var(--p);margin-bottom:10px">المشتركون</h3><div class="cd"><div class="g2"><input id="cn" class="inp" placeholder="اسم المشترك"><input id="cp" class="inp" placeholder="الجوال"></div><div class="g2"><input id="cl" class="inp" placeholder="الاشتراك"><input id="cf" type="number" class="inp" placeholder="القيمة"></div><button class="b1" onclick="addC()">+ إضافة مشترك</button></div><div id="lc"></div></div>
   <div id="pg-alerts" class="pg"><h3 style="color:var(--p);margin-bottom:10px">التنبيهات</h3><div id="lal"></div></div>
-  <div id="pg-set" class="pg"><h3 style="color:var(--p);margin-bottom:10px">الإعدادات</h3><div class="cd"><input id="np" class="in" placeholder="رمز سري جديد"><button class="b1" style="margin-bottom:8px" onclick="cpin()">حفظ الرمز</button><button class="b2" onclick="sync()">🔄 تحديث من Google</button></div></div>
+  <div id="pg-set" class="pg"><h3 style="color:var(--p);margin-bottom:10px">الإعدادات</h3><div class="cd"><input id="np" class="inp" placeholder="رمز سري جديد"><button class="b1" style="margin-bottom:8px" onclick="cpin()">حفظ الرمز</button><button class="b2" onclick="sync()">🔄 تحديث من Google</button></div></div>
 </main>
-<nav class="nv"><div class="ni act" id="n-home" onclick="pg('home')">🏠<br>الرئيسية</div><div class="ni" id="n-cli" onclick="pg('cli')">👥<br>المشتركون</div><div class="ni" id="n-fleet" onclick="pg('fleet')">🚐<br>الأسطول</div><div class="ni" id="n-acc" onclick="pg('acc')">💳<br>الحسابات</div></nav>
-<script>
-const U="https://google.com";
-let D=JSON.parse(localStorage.getItem('maidan_data'))||{pin:"2026",vehicles:[],accounts:[],clients:[]};
-document.getElementById('ad').valueAsDate=new Date();
-function go(){let v=document.getElementById('pin').value.trim();if(v===String(D.pin)||v==="2026"){document.getElementById('lock').style.display='none';sync()}else{document.getElementById('err').style.display='block'}}
-function out(){document.getElementById('pin').value='';document.getElementById('lock').style.display='flex'}
-function pg(x){document.querySelectorAll('.pg').forEach(e=>e.classList.remove('act'));document.getElementById('pg-'+x).classList.add('act');document.querySelectorAll('.ni').forEach(e=>e.classList.remove('act'));if(document.getElementById('n-'+x))document.getElementById('n-'+x).classList.add('act')}
-function qacc(t){document.getElementById('at').value=t;pg('acc')}
