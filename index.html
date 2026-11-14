@@ -2,94 +2,93 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ميدان العز للنقليات • النظام المحاسبي وإدارة الأسطول</title>
+<title>ميدان العز • الخرج - الرياض</title>
 <link href="https://googleapis.com" rel="stylesheet">
 <style>
-:root{--p:#0F172A;--b:#1E40AF;--bg:#F1F5F9;--c:#FFFFFF;--t:#0F172A;--m:#64748B;--g:#15803D;--r:#B91C1C;--bd:#E2E8F0}
+:root{--p:#0F172A;--p2:#1E293B;--b:#2563EB;--bg:#F8FAFC;--c:#FFFFFF;--t:#0F172A;--m:#64748B;--g:#16A34A;--r:#DC2626;--bd:#E2E8F0}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'IBM Plex Sans Arabic',sans-serif}
-body{background:var(--bg);color:var(--t);padding-bottom:60px}
+body{background:var(--bg);color:var(--t);display:flex;min-height:100vh}
 #lk{position:fixed;inset:0;background:var(--p);z-index:99;display:flex;align-items:center;justify-content:center;padding:20px;color:#fff}
-.bx{background:#1E293B;border:1px solid #334155;border-radius:16px;padding:32px 24px;width:100%;max-width:360px;text-align:center}
-.pi{width:100%;padding:12px;margin:16px 0 12px;border-radius:10px;border:1px solid #475569;background:#0F172A;color:#fff;font-size:20px;text-align:center;letter-spacing:6px}
-.bt{width:100%;padding:12px;border-radius:10px;border:none;background:#2563EB;color:#fff;font-weight:700;font-size:15px;cursor:pointer}
-header{background:var(--p);color:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #2563EB}
-.sy{font-size:12px;background:rgba(37,99,235,.25);color:#93C5FD;padding:4px 12px;border-radius:20px}
-main{max-width:1150px;margin:0 auto;padding:20px 16px}
-.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
-@media(min-width:768px){.kpis{grid-template-columns:repeat(4,1fr)}}
-.kpi{background:var(--c);padding:16px;border-radius:12px;border:1px solid var(--bd);box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.kpi small{color:var(--m);font-size:12.5px;display:block;margin-bottom:4px}
-.kpi b{font-size:20px}
-.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:18px;padding-bottom:4px}
-.tb{padding:10px 18px;border-radius:10px;border:1px solid var(--bd);background:var(--c);color:var(--t);font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap}
-.tb.ac{background:var(--p);color:#fff;border-color:var(--p)}
-.cd{background:var(--c);border-radius:12px;padding:18px;border:1px solid var(--bd);margin-bottom:16px}
+.bx{background:var(--p2);border:1px solid #334155;border-radius:20px;padding:34px 24px;width:100%;max-width:360px;text-align:center}
+.pi{width:100%;padding:13px;margin:16px 0 12px;border-radius:12px;border:1px solid #475569;background:var(--p);color:#fff;font-size:20px;text-align:center;letter-spacing:6px}
+.bt{width:100%;padding:13px;border-radius:12px;border:none;background:var(--b);color:#fff;font-weight:700;font-size:15px;cursor:pointer}
+aside{width:240px;background:var(--c);border-left:1px solid var(--bd);padding:20px 14px;display:flex;flex-direction:column;justify-content:space-between;flex-shrink:0}
+.brand{display:flex;align-items:center;gap:10px;padding:8px 10px 20px;border-bottom:1px solid var(--bd);margin-bottom:16px}
+.logo{width:38px;height:38px;border-radius:10px;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.nv{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:12px;color:var(--m);font-size:14px;font-weight:600;cursor:pointer;margin-bottom:4px;transition:.15s}
+.nv:hover{background:#F1F5F9;color:var(--t)}
+.nv.ac{background:var(--p);color:#fff}
+main{flex:1;padding:24px;max-width:1100px;margin:0 auto;width:100%}
+.hero{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-radius:20px;padding:24px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.sub-kpis{display:flex;gap:10px;flex-wrap:wrap}
+.sk{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);padding:10px 16px;border-radius:12px;min-width:95px}
+.sk small{color:#94A3B8;font-size:11.5px;display:block}
+.g4{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:20px}
+@media(min-width:768px){.g4{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:767px){body{flex-direction:column;padding-bottom:75px}aside{width:100%;flex-direction:row;position:fixed;bottom:0;left:0;right:0;padding:8px;border-top:1px solid var(--bd);border-left:none;z-index:80}.brand,.hide-m{display:none}.menu{display:flex;width:100%;justify-content:space-around}.nv{flex-direction:column;font-size:11px;padding:6px;margin:0;gap:3px}}
+.cd{background:var(--c);border-radius:16px;padding:18px;border:1px solid var(--bd);box-shadow:0 2px 8px rgba(15,23,42,.03);margin-bottom:16px}
 .fm{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:12px}
 @media(min-width:768px){.fm{grid-template-columns:repeat(4,1fr)}}
-.in{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #CBD5E1;background:#F8FAFC;font-size:14px}
-.b1{background:#1E40AF;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:600;cursor:pointer;font-size:14px}
-.b2{background:#F8FAFC;color:var(--t);border:1px solid #CBD5E1;padding:8px 14px;border-radius:8px;font-weight:600;cursor:pointer;font-size:13px}
-.tbl-w{overflow-x:auto}
+.in{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #CBD5E1;background:#F8FAFC;font-size:14px}
+.b1{background:var(--b);color:#fff;border:none;padding:10px 18px;border-radius:10px;font-weight:600;cursor:pointer}
+.b2{background:#F1F5F9;color:var(--t);border:1px solid #CBD5E1;padding:8px 14px;border-radius:10px;font-weight:600;cursor:pointer}
 table{width:100%;border-collapse:collapse;font-size:13.5px;text-align:right}
-th{background:#F8FAFC;color:var(--m);font-weight:700;padding:11px;border-bottom:2px solid var(--bd)}
+th{background:#F8FAFC;color:var(--m);padding:11px;border-bottom:1px solid var(--bd)}
 td{padding:11px;border-bottom:1px solid var(--bd)}
-tr:hover{background:#F8FAFC}
-.bdg{padding:3px 9px;border-radius:6px;font-size:12px;font-weight:600}
-.bg-g{background:#DCFCE7;color:var(--g)}.bg-r{background:#FEE2E2;color:var(--r)}
-.dl{background:#FEE2E2;color:var(--r);border:none;padding:5px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
+.dl{background:#FEE2E2;color:var(--r);border:none;padding:5px 10px;border-radius:7px;cursor:pointer;font-size:12px;font-weight:600}
 .pg{display:none}.pg.ac{display:block}
 </style></head><body>
-<div id="lk"><div class="bx"><h2 style="margin-bottom:4px">ميدان العز للنقليات</h2><p style="font-size:13px;color:#94A3B8">نظام إدارة الأسطول والمحاسبة</p><input type="password" id="p" class="pi" placeholder="2026"><button class="bt" onclick="inApp()">تسجيل الدخول</button></div></div>
-<header><div><h1 style="font-size:19px">ميدان العز للنقليات</h1><p style="font-size:12px;color:#94A3B8">لوحة الإدارة المالية والتشغيلية</p></div><div style="display:flex;gap:10px;align-items:center"><span class="sy" id="sy">☁️ متزامن مع Google</span><button class="b2" style="background:#1E293B;color:#fff;border-color:#334155" onclick="out()">قفل</button></div></header>
+<div id="lk"><div class="bx"><h2 style="margin-bottom:4px">ميدان العز</h2><p style="font-size:13px;color:#94A3B8">الخرج • الرياض</p><input type="password" id="p" class="pi" placeholder="2026"><button class="bt" onclick="inApp()">دخول النظام</button></div></div>
+<aside>
+  <div>
+    <div class="brand"><div class="logo">↗</div><div><b>ميدان العز</b><div style="font-size:11.5px;color:var(--m)">الخرج • الرياض</div></div></div>
+    <div class="menu">
+      <div class="nv ac" id="n-hm" onclick="go('hm')">📊 <span>الرئيسية</span></div>
+      <div class="nv" id="n-cl" onclick="go('cl')">👥 <span>المشتركات</span></div>
+      <div class="nv" id="n-dr" onclick="go('dr')">🪪 <span>السائقون</span></div>
+      <div class="nv" id="n-fl" onclick="go('fl')">🚐 <span>المركبات</span></div>
+      <div class="nv" id="n-ac" onclick="go('ac')">💳 <span>الحسابات</span></div>
+      <div class="nv hide-m" id="n-st" onclick="go('st')">⚙️ <span>الإعدادات</span></div>
+    </div>
+  </div>
+  <div class="hide-m" style="background:#F8FAFC;padding:12px;border-radius:12px;font-size:11.5px;color:var(--m)"><b style="color:var(--t);display:block;margin-bottom:3px">نقل مشتركات</b>إدارة السائقون والوثائق والحسابات في مكان واحد<button class="b2" style="width:100%;margin-top:8px" onclick="out()">قفل النظام</button></div>
+</aside>
+
 <main>
-<div class="kpis">
-  <div class="kpi"><small>إجمالي الإيرادات</small><b id="ki" style="color:var(--g)">0 ر.س</b></div>
-  <div class="kpi"><small>إجمالي المصروفات</small><b id="ke" style="color:var(--r)">0 ر.س</b></div>
-  <div class="kpi"><small>صافي الربح</small><b id="kn" style="color:#1E40AF">0 ر.س</b></div>
-  <div class="kpi"><small>الأسطول / المشتركون</small><b id="kc">0 / 0</b></div>
-</div>
-<div class="tabs">
-  <button class="tb ac" id="t-ac" onclick="go('ac')">📊 الحسابات والقيود</button>
-  <button class="tb" id="t-fl" onclick="go('fl')">🚛 الأسطول والوثائق</button>
-  <button class="tb" id="t-cl" onclick="go('cl')">👥 المشتركون والفواتير</button>
-  <button class="tb" id="t-st" onclick="go('st')">⚙️ الإعدادات والنسخ</button>
-</div>
-
-<div id="p-ac" class="pg ac">
-  <div class="cd"><h4 style="margin-bottom:12px">إضافة قيد مالي جديد</h4><div class="fm"><select id="at" class="in"><option value="إيراد">إيراد (+)</option><option value="مصروف">مصروف (-)</option></select><input id="aa" type="number" class="in" placeholder="المبلغ (ر.س)"><input id="al" class="in" placeholder="البيان (عقد / وقود / صيانة / راتب)"><input id="ad" type="date" class="in"></div><button class="b1" onclick="aa()">+ حفظ في الجدول</button></div>
-  <div class="cd tbl-w"><table><thead><tr><th>التاريخ</th><th>النوع</th><th>البيان</th><th>المبلغ</th><th>إجراء</th></tr></thead><tbody id="la"></tbody></table></div>
+<div id="p-hm" class="pg ac">
+  <div class="hero">
+    <div><span style="background:rgba(37,99,235,.3);color:#93C5FD;padding:3px 10px;border-radius:20px;font-size:12px" id="sy">☁️ متزامن مع Google</span><div style="font-size:13px;color:#94A3B8;margin-top:8px">صافي ربح الشهر بعد المصروفات</div><div id="kn" style="font-size:32px;font-weight:700;color:#60A5FA;margin:4px 0 12px">0 ر.س</div><button class="bt" style="width:auto;padding:9px 18px" onclick="go('ac')">تسجيل دفعة ←</button></div>
+    <div class="sub-kpis"><div class="sk"><small>الإيراد</small><b id="ki" style="color:#4ADE80">0</b></div><div class="sk"><small>المصروف</small><b id="ke" style="color:#F87171">0</b></div></div>
+  </div>
+  <div class="g4">
+    <div class="cd" onclick="go('cl')" style="cursor:pointer"><small style="color:var(--m)">مشتركات نشطة</small><div id="c1" style="font-size:24px;font-weight:700;margin-top:6px">0</div></div>
+    <div class="cd" onclick="go('dr')" style="cursor:pointer"><small style="color:var(--m)">السائقون</small><div id="c2" style="font-size:24px;font-weight:700;margin-top:6px">0</div></div>
+    <div class="cd" onclick="go('fl')" style="cursor:pointer"><small style="color:var(--m)">المركبات</small><div id="c3" style="font-size:24px;font-weight:700;margin-top:6px">0</div></div>
+    <div class="cd" onclick="go('ac')" style="cursor:pointer"><small style="color:var(--m)">القيود المالية</small><div id="c4" style="font-size:24px;font-weight:700;margin-top:6px">0</div></div>
+  </div>
 </div>
 
-<div id="p-fl" class="pg">
-  <div class="cd"><h4 style="margin-bottom:12px">إضافة مركبة للأسطول</h4><div class="fm"><input id="vp" class="in" placeholder="رقم اللوحة"><input id="vm" class="in" placeholder="نوع المركبة"><input id="vd" class="in" placeholder="اسم السائق"><input id="vx" type="date" class="in"></div><button class="b1" onclick="av()">+ إضافة مركبة</button></div>
-  <div class="cd tbl-w"><table><thead><tr><th>اللوحة</th><th>المركبة</th><th>السائق</th><th>انتهاء الوثائق</th><th>إجراء</th></tr></thead><tbody id="lv"></tbody></table></div>
-</div>
-
-<div id="p-cl" class="pg">
-  <div class="cd"><h4 style="margin-bottom:12px">إضافة مشترك / عميل</h4><div class="fm"><input id="cn" class="in" placeholder="اسم المشترك"><input id="cp" class="in" placeholder="رقم الجوال"><input id="cl" class="in" placeholder="نوع الاشتراك / خط السير"><input id="cf" type="number" class="in" placeholder="قيمة الاشتراك"></div><button class="b1" onclick="ac()">+ إضافة مشترك</button></div>
-  <div class="cd tbl-w"><table><thead><tr><th>المشترك</th><th>الجوال</th><th>الاشتراك</th><th>القيمة</th><th>إجراء</th></tr></thead><tbody id="lc"></tbody></table></div>
-</div>
-
-<div id="p-st" class="pg">
-  <div class="cd"><h4 style="margin-bottom:12px">الإعدادات والنسخ الاحتياطي</h4><div class="fm"><input id="np" class="in" placeholder="رمز دخول جديد (الحالي 2026)"><button class="b1" onclick="cp()">تغيير الرمز</button><button class="b2" onclick="sy()">🔄 تحديث البيانات من Google</button><button class="b2" onclick="bkp()">💾 تصدير ملف احتياطي</button></div></div>
-</div>
+<div id="p-cl" class="pg"><div class="cd"><h4 style="margin-bottom:12px">إضافة مشتركة جديدة</h4><div class="fm"><input id="cn" class="in" placeholder="اسم المشتركة"><input id="cp" class="in" placeholder="رقم الجوال"><input id="cl" class="in" placeholder="المسار (الخرج - الرياض)"><input id="cf" type="number" class="in" placeholder="الاشتراك الشهري"></div><button class="b1" onclick="ac()">+ إضافة مشتركة</button></div><div class="cd" style="overflow-x:auto"><table><thead><tr><th>الاسم</th><th>الجوال</th><th>المسار</th><th>المبلغ</th><th>إجراء</th></tr></thead><tbody id="lc"></tbody></table></div></div>
+<div id="p-dr" class="pg"><div class="cd"><h4 style="margin-bottom:12px">إضافة سائق</h4><div class="fm"><input id="dn" class="in" placeholder="اسم السائق"><input id="dp" class="in" placeholder="رقم الجوال"><input id="di" class="in" placeholder="رقم الهوية / الإقامة"><input id="dx" type="date" class="in"></div><button class="b1" onclick="ad()">+ إضافة سائق</button></div><div class="cd" style="overflow-x:auto"><table><thead><tr><th>السائق</th><th>الجوال</th><th>الهوية</th><th>انتهاء الرخصة</th><th>إجراء</th></tr></thead><tbody id="ld"></tbody></table></div></div>
+<div id="p-fl" class="pg"><div class="cd"><h4 style="margin-bottom:12px">إضافة مركبة</h4><div class="fm"><input id="vp" class="in" placeholder="رقم اللوحة"><input id="vm" class="in" placeholder="نوع المركبة"><input id="vd" class="in" placeholder="السائق المستلم"><input id="vx" type="date" class="in"></div><button class="b1" onclick="av()">+ إضافة مركبة</button></div><div class="cd" style="overflow-x:auto"><table><thead><tr><th>اللوحة</th><th>النوع</th><th>السائق</th><th>انتهاء الاستمارة</th><th>إجراء</th></tr></thead><tbody id="lv"></tbody></table></div></div>
+<div id="p-ac" class="pg"><div class="cd"><h4 style="margin-bottom:12px">تسجيل دفعة / مصروف</h4><div class="fm"><select id="at" class="in"><option value="إيراد">إيراد (+)</option><option value="مصروف">مصروف (-)</option></select><input id="aa" type="number" class="in" placeholder="المبلغ (ر.س)"><input id="al" class="in" placeholder="البيان"><input id="adt" type="date" class="in"></div><button class="b1" onclick="aac()">حفظ العملية</button></div><div class="cd" style="overflow-x:auto"><table><thead><tr><th>التاريخ</th><th>النوع</th><th>البيان</th><th>المبلغ</th><th>إجراء</th></tr></thead><tbody id="la"></tbody></table></div></div>
+<div id="p-st" class="pg"><div class="cd"><h4 style="margin-bottom:12px">الإعدادات والمزامنة</h4><div class="fm"><input id="np" class="in" placeholder="رمز جديد (الحالي 2026)"><button class="b1" onclick="cp()">حفظ الرمز</button><button class="b2" onclick="sy()">🔄 تحديث من Google</button></div></div></div>
 </main>
 <script>
 const U="https://google.com";
-let D=JSON.parse(localStorage.getItem('maidan_data'))||{pin:"2026",vehicles:[],accounts:[],clients:[]};
-document.getElementById('ad').valueAsDate=new Date();
-document.getElementById('p').addEventListener('keyup',e=>{if(e.key==='Enter')inApp()});
-function inApp(){let v=document.getElementById('p').value.trim();if(v===String(D.pin)||v==="2026"){document.getElementById('lk').style.display='none';sy()}else alert("الرمز الصحيح 2026")}
-function out(){document.getElementById('p').value='';document.getElementById('lk').style.display='flex'}
-function go(x){document.querySelectorAll('.pg').forEach(e=>e.classList.remove('ac'));document.getElementById('p-'+x).classList.add('ac');document.querySelectorAll('.tb').forEach(e=>e.classList.remove('ac'));document.getElementById('t-'+x).classList.add('ac')}
-async function sv(){localStorage.setItem('maidan_data',JSON.stringify(D));rn();document.getElementById('sy').textContent="⏳ جاري الحفظ...";try{await fetch(U,{method:'POST',mode:'no-cors',body:JSON.stringify(D)});document.getElementById('sy').textContent="☁️ محفوظ في Google"}catch(e){}}
-async function sy(){try{let r=await fetch(U),j=await r.json();if(j&&j.vehicles){D=j;localStorage.setItem('maidan_data',JSON.stringify(D))}}catch(e){}rn()}
+let D=JSON.parse(localStorage.getItem('maidan_data'))||{pin:"2026",vehicles:[],accounts:[],clients:[],drivers:[]};
+if(!D.drivers)D.drivers=[];document.getElementById('adt').valueAsDate=new Date();
+function inApp(){let v=document.getElementById('p').value.trim();if(v===String(D.pin)||v==="2026"){document.getElementById('lk').style.display='none';sy()}else alert("الرمز 2026")}
+function out(){document.getElementById('lk').style.display='flex'}
+function go(x){document.querySelectorAll('.pg').forEach(e=>e.classList.remove('ac'));document.getElementById('p-'+x).classList.add('ac');document.querySelectorAll('.nv').forEach(e=>e.classList.remove('ac'));if(document.getElementById('n-'+x))document.getElementById('n-'+x).classList.add('ac')}
+async function sv(){localStorage.setItem('maidan_data',JSON.stringify(D));rn();fetch(U,{method:'POST',mode:'no-cors',body:JSON.stringify(D)});document.getElementById('sy').textContent="☁️ محفوظ في Google"}
+async function sy(){try{let r=await fetch(U),j=await r.json();if(j&&j.vehicles){D=j;if(!D.drivers)D.drivers=[];localStorage.setItem('maidan_data',JSON.stringify(D))}}catch(e){}rn()}
+function ac(){let n=document.getElementById('cn').value.trim();if(!n)return;D.clients.unshift({id:Date.now(),name:n,phone:document.getElementById('cp').value,plan:document.getElementById('cl').value,fee:document.getElementById('cf').value});document.getElementById('cn').value='';sv()}
+function ad(){let n=document.getElementById('dn').value.trim();if(!n)return;D.drivers.unshift({id:Date.now(),name:n,phone:document.getElementById('dp').value,nid:document.getElementById('di').value,exp:document.getElementById('dx').value});document.getElementById('dn').value='';sv()}
 function av(){let p=document.getElementById('vp').value.trim();if(!p)return;D.vehicles.unshift({id:Date.now(),plate:p,model:document.getElementById('vm').value,driver:document.getElementById('vd').value,expiry:document.getElementById('vx').value});document.getElementById('vp').value='';sv()}
-function aa(){let a=parseFloat(document.getElementById('aa').value),t=document.getElementById('al').value.trim();if(!a||!t)return;D.accounts.unshift({id:Date.now(),type:document.getElementById('at').value,amount:a,title:t,date:document.getElementById('ad').value});document.getElementById('aa').value='';document.getElementById('al').value='';sv()}
-function ac(){let n=document.getElementById('cn').value.trim();if(!n)return;D.clients.unshift({id:Date.now(),name:n,phone:document.getElementById('cp').value,plan:document.getElementById('cl').value,fee:parseFloat(document.getElementById('cf').value)||0});document.getElementById('cn').value='';sv()}
-function dl(k,i){if(confirm("تأكيد الحذف؟")){D[k]=D[k].filter(x=>x.id!==i);sv()}}
-function cp(){let p=document.getElementById('np').value.trim();if(p.length>=4){D.pin=p;sv();alert("تم تغيير الرمز")}}
-function bkp(){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(D,null,2)],{type:'application/json'}));a.download='maidan_backup.json';a.click()}
-function rn(){let i=0,e=0;D.accounts.forEach(a=>a.type==='إيراد'?i+=Number(a.amount):e+=Number(a.amount));document.getElementById('ki').textContent=i.toLocaleString()+" ر.س";document.getElementById('ke').textContent=e.toLocaleString()+" ر.س";document.getElementById('kn').textContent=(i-e).toLocaleString()+" ر.س";document.getElementById('kc').textContent=D.vehicles.length+" / "+D.clients.length;document.getElementById('la').innerHTML=D.accounts.map(a=>`<tr><td>${a.date||'-'}</td><td><span class="bdg ${a.type==='إيراد'?'bg-g':'bg-r'}">${a.type}</span></td><td><b>${a.title}</b></td><td><b>${Number(a.amount).toLocaleString()} ر.س</b></td><td><button class="dl" onclick="dl('accounts',${a.id})">حذف</button></td></tr>`).join('');document.getElementById('lv').innerHTML=D.vehicles.map(v=>`<tr><td><b>${v.plate}</b></td><td>${v.model||'-'}</td><td>${v.driver||'-'}</td><td>${v.expiry||'-'}</td><td><button class="dl" onclick="dl('vehicles',${v.id})">حذف</button></td></tr>`).join('');document.getElementById('lc').innerHTML=D.clients.map(c=>`<tr><td><b>${c.name}</b></td><td>${c.phone||'-'}</td><td>${c.plan||'-'}</td><td><b>${Number(c.fee||0).toLocaleString()} ر.س</b></td><td><button class="dl" onclick="dl('clients',${c.id})">حذف</button></td></tr>`).join('')}
+function aac(){let a=parseFloat(document.getElementById('aa').value),t=document.getElementById('al').value.trim();if(!a||!t)return;D.accounts.unshift({id:Date.now(),type:document.getElementById('at').value,amount:a,title:t,date:document.getElementById('adt').value});document.getElementById('aa').value='';sv()}
+function dl(k,i){if(confirm("حذف؟")){D[k]=D[k].filter(x=>x.id!==i);sv()}}
+function cp(){let p=document.getElementById('np').value.trim();if(p.length>=4){D.pin=p;sv();alert("تم")}}
+function rn(){let i=0,e=0;D.accounts.forEach(a=>a.type==='إيراد'?i+=Number(a.amount):e+=Number(a.amount));document.getElementById('ki').textContent=i.toLocaleString();document.getElementById('ke').textContent=e.toLocaleString();document.getElementById('kn').textContent=(i-e).toLocaleString()+" ر.س";document.getElementById('c1').textContent=D.clients.length;document.getElementById('c2').textContent=D.drivers.length;document.getElementById('c3').textContent=D.vehicles.length;document.getElementById('c4').textContent=D.accounts.length;document.getElementById('lc').innerHTML=D.clients.map(c=>`<tr><td><b>${c.name}</b></td><td>${c.phone||'-'}</td><td>${c.plan||'-'}</td><td><b>${c.fee||0} ر.س</b></td><td><button class="dl" onclick="dl('clients',${c.id})">حذف</button></td></tr>`).join('');document.getElementById('ld').innerHTML=D.drivers.map(d=>`<tr><td><b>${d.name}</b></td><td>${d.phone||'-'}</td><td>${d.nid||'-'}</td><td>${d.exp||'-'}</td><td><button class="dl" onclick="dl('drivers',${d.id})">حذف</button></td></tr>`).join('');document.getElementById('lv').innerHTML=D.vehicles.map(v=>`<tr><td><b>${v.plate}</b></td><td>${v.model||'-'}</td><td>${v.driver||'-'}</td><td>${v.expiry||'-'}</td><td><button class="dl" onclick="dl('vehicles',${v.id})">حذف</button></td></tr>`).join('');document.getElementById('la').innerHTML=D.accounts.map(a=>`<tr><td>${a.date||'-'}</td><td>${a.type}</td><td><b>${a.title}</b></td><td><b>${a.amount} ر.س</b></td><td><button class="dl" onclick="dl('accounts',${a.id})">حذف</button></td></tr>`).join('')}
 rn();
 </script></body></html>
