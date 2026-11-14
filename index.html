@@ -56,3 +56,24 @@
   <div id="pg-alerts" class="pg"><h3 style="color:var(--p);margin-bottom:10px">التنبيهات</h3><div id="lal"></div></div>
   <div id="pg-set" class="pg"><h3 style="color:var(--p);margin-bottom:10px">الإعدادات</h3><div class="cd"><input id="np" class="inp" placeholder="رمز سري جديد"><button class="b1" style="margin-bottom:8px" onclick="cpin()">حفظ الرمز</button><button class="b2" onclick="sync()">🔄 تحديث من Google</button></div></div>
 </main>
+<nav class="nv"><div class="ni act" id="n-home" onclick="pg('home')">🏠<br>الرئيسية</div><div class="ni" id="n-cli" onclick="pg('cli')">👥<br>المشتركون</div><div class="ni" id="n-fleet" onclick="pg('fleet')">🚐<br>الأسطول</div><div class="ni" id="n-acc" onclick="pg('acc')">💳<br>الحسابات</div></nav>
+<script>
+const U="https://google.com";
+let D=JSON.parse(localStorage.getItem('maidan_data'))||{pin:"2026",vehicles:[],accounts:[],clients:[]};
+document.getElementById('ad').valueAsDate=new Date();
+function go(){let v=document.getElementById('pin').value.trim();if(v===String(D.pin)||v==="2026"){document.getElementById('lock').style.display='none';sync()}else{document.getElementById('err').style.display='block'}}
+function out(){document.getElementById('pin').value='';document.getElementById('lock').style.display='flex'}
+function pg(x){document.querySelectorAll('.pg').forEach(e=>e.classList.remove('act'));document.getElementById('pg-'+x).classList.add('act');document.querySelectorAll('.ni').forEach(e=>e.classList.remove('act'));if(document.getElementById('n-'+x))document.getElementById('n-'+x).classList.add('act')}
+function qacc(t){document.getElementById('at').value=t;pg('acc')}
+async function save(){localStorage.setItem('maidan_data',JSON.stringify(D));ren();try{await fetch(U,{method:'POST',mode:'no-cors',body:JSON.stringify(D)});document.getElementById('st').textContent="☁️ محفوظ في Google"}catch(e){}}
+async function sync(){try{let r=await fetch(U),j=await r.json();if(j&&(j.vehicles||j.accounts||j.clients)){D={pin:j.pin||"2026",vehicles:j.vehicles||[],accounts:j.accounts||[],clients:j.clients||[]};localStorage.setItem('maidan_data',JSON.stringify(D))}}catch(e){}ren()}
+function addV(){let p=document.getElementById('vp').value.trim();if(!p)return;D.vehicles.unshift({id:Date.now(),plate:p,model:document.getElementById('vm').value,driver:document.getElementById('vd').value,expiry:document.getElementById('vx').value});save()}
+function addA(){let a=parseFloat(document.getElementById('aa').value),t=document.getElementById('al').value.trim();if(!a||!t)return;D.accounts.unshift({id:Date.now(),type:document.getElementById('at').value,amount:a,title:t,date:document.getElementById('ad').value});save()}
+function addC(){let n=document.getElementById('cn').value.trim();if(!n)return;D.clients.unshift({id:Date.now(),name:n,phone:document.getElementById('cp').value,plan:document.getElementById('cl').value,fee:parseFloat(document.getElementById('cf').value)||0});save()}
+function del(k,i){D[k]=D[k].filter(x=>x.id!==i);save()}
+function cpin(){let p=document.getElementById('np').value.trim();if(p.length>=4){D.pin=p;save();alert("تم الحفظ")}}
+function ren(){let i=0,e=0;D.accounts.forEach(a=>a.type==='إيراد'?i+=Number(a.amount):e+=Number(a.amount));document.getElementById('ki').textContent=i+" ر.س";document.getElementById('ke').textContent=e+" ر.س";document.getElementById('kn').textContent=(i-e)+" ر.س";document.getElementById('sf').textContent=D.vehicles.length+" مركبات";document.getElementById('sa').textContent=D.accounts.length+" قيود";document.getElementById('sc').textContent=D.clients.length+" عملاء";document.getElementById('lv').innerHTML=D.vehicles.map(v=>`<div class="it"><div><b>${v.plate}</b> (${v.model||''})<br><small>${v.driver||''} • ${v.expiry||''}</small></div><button class="dl" onclick="del('vehicles',${v.id})">حذف</button></div>`).join('');document.getElementById('la').innerHTML=D.accounts.map(a=>`<div class="it"><div><b>${a.title}</b><br><small>${a.date||''}</small></div><div><b style="color:${a.type==='إيراد'?'#248A52':'#D94343'}">${a.amount} ر.س</b> <button class="dl" onclick="del('accounts',${a.id})">حذف</button></div></div>`).join('');document.getElementById('lc').innerHTML=D.clients.map(c=>`<div class="it"><div><b>${c.name}</b><br><small>${c.phone||''} • ${c.plan||''} (${c.fee} ر.س)</small></div><button class="dl" onclick="del('clients',${c.id})">حذف</button></div>`).join('');document.getElementById('lal').innerHTML=D.vehicles.filter(v=>v.expiry).map(v=>`<div class="it"><div><b>مركبة ${v.plate}</b><br><small>تاريخ الانتهاء: ${v.expiry}</small></div></div>`).join('')||'<div class="cd" style="text-align:center">لا توجد تنبيهات</div>'}
+ren();
+</script>
+</body>
+</html>
