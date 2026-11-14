@@ -1,175 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ميدان العز للنقليات</title>
+<link href="https://googleapis.com" rel="stylesheet">
+<style>
+:root{--p:#253C2E;--a:#D4B679;--bg:#F7F5F0;--c:#fff;--t:#1D2922;--m:#6E7A73}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'IBM Plex Sans Arabic',sans-serif}
+body{background:var(--bg);color:var(--t);padding-bottom:100px}
+#lk{position:fixed;inset:0;background:var(--p);z-index:99;display:flex;align-items:center;justify-content:center;padding:20px;color:#fff}
+.bx{background:rgba(255,255,255,.08);border:1px solid rgba(212,182,121,.4);border-radius:26px;padding:30px 22px;width:100%;max-width:340px;text-align:center}
+.pi{width:100%;padding:13px;margin:16px 0 12px;border-radius:14px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.25);color:#fff;font-size:22px;text-align:center;letter-spacing:6px}
+.bt{width:100%;padding:13px;border-radius:14px;border:none;background:var(--a);color:var(--p);font-weight:700;font-size:16px;cursor:pointer}
+header{background:var(--p);color:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:center}
+.ib{width:40px;height:40px;border-radius:50%;background:transparent;border:1.3px solid var(--a);color:var(--a);cursor:pointer;font-size:16px}
+main{max-width:520px;margin:0 auto;padding:16px}
+.cd{background:var(--c);border-radius:22px;padding:18px;box-shadow:0 6px 20px rgba(0,0,0,.04);margin-bottom:16px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.b1{background:var(--p);color:#fff;border:none;padding:13px;border-radius:14px;font-weight:600;cursor:pointer;width:100%}
+.b2{background:#fff;color:var(--p);border:1.5px solid rgba(37,60,46,.3);padding:13px;border-radius:14px;font-weight:600;cursor:pointer;width:100%}
+.dc{background:var(--c);border-radius:22px;padding:22px 12px;text-align:center;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,.03)}
+.di{width:52px;height:52px;border-radius:50%;background:var(--p);color:var(--a);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:22px}
+.in{width:100%;padding:11px;border-radius:12px;border:1px solid #ddd;background:#FAF9F6;margin-bottom:9px}
+.it{background:#fff;border-radius:14px;padding:13px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.nv{position:fixed;bottom:14px;left:14px;right:14px;max-width:480px;margin:0 auto;background:var(--p);border-radius:22px;padding:10px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;color:rgba(255,255,255,.65);font-size:12px}
+.nv div{cursor:pointer}.nv .ac{color:var(--a);font-weight:700}
+.pg{display:none}.pg.ac{display:block}
+</style></head><body>
+<div id="lk"><div class="bx"><h2 style="color:var(--a)">ميدان العز للنقليات</h2><p style="font-size:13px;opacity:.8;margin-top:4px">مساحة الإدارة السحابية</p><input type="password" id="p" class="pi" placeholder="2026"><button class="bt" onclick="inApp()">دخول النظام</button></div></div>
+<header><div><h1 style="font-size:21px;color:var(--a)">ميدان العز</h1><p style="font-size:12px;opacity:.85">للنقليات • مساحة الإدارة</p></div><div style="display:flex;gap:8px"><button class="ib" onclick="go('st')">⚙️</button><button class="ib" onclick="go('al')">🔔</button></div></header>
+<main>
+<div id="p-hm" class="pg ac"><h2 style="text-align:center;color:var(--p);margin:6px 0 16px;font-size:21px">كل رحلة تبدأ بتنظيم أفضل</h2><div class="cd"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><div><h3 style="color:var(--p);font-size:18px">ميدان العز<br>للنقليات</h3><p style="font-size:13px;color:var(--m);margin-top:5px">مساحة واضحة لإدارة<br>النقل</p></div><div style="width:120px;height:85px;background:#F5E5C8;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:42px">🚐</div></div><div class="g2"><button class="b1" onclick="qa('إيراد')">تسجيل إيراد</button><button class="b2" onclick="qa('مصروف')">تسجيل مصروف</button></div></div><h3 style="color:var(--p);margin-bottom:12px;font-size:16px">• اختر وجهتك</h3><div class="g2"><div class="dc" onclick="go('fl')"><div class="di">🚐</div><b>الأسطول</b></div><div class="dc" onclick="go('ac')"><div class="di">📄</div><b>الحسابات</b></div><div class="dc" onclick="go('al')"><div class="di">🔔</div><b>التنبيهات</b></div><div class="dc" onclick="go('cl')"><div class="di">👥</div><b>المشتركون</b></div></div><div style="text-align:center;margin-top:20px;font-size:12px;color:var(--m)"><p id="sy">✓ متزامن مع Google</p><button onclick="out()" style="background:none;border:none;color:var(--p);font-weight:700;margin-top:8px;cursor:pointer">🚪 تسجيل الخروج</button></div></div>
+<div id="p-fl" class="pg"><h3 style="color:var(--p);margin-bottom:10px">الأسطول</h3><div class="cd"><input id="vp" class="in" placeholder="رقم اللوحة"><input id="vm" class="in" placeholder="نوع المركبة"><input id="vd" class="in" placeholder="اسم السائق"><input id="vx" type="date" class="in"><button class="b1" onclick="av()">+ إضافة مركبة</button></div><div id="lv"></div></div>
+<div id="p-ac" class="pg"><h3 style="color:var(--p);margin-bottom:10px">الحسابات</h3><div class="cd"><select id="at" class="in"><option>إيراد</option><option>مصروف</option></select><input id="aa" type="number" class="in" placeholder="المبلغ"><input id="al" class="in" placeholder="البيان"><button class="b1" onclick="aa()">حفظ القيد</button></div><div id="la"></div></div>
+<div id="p-cl" class="pg"><h3 style="color:var(--p);margin-bottom:10px">المشتركون</h3><div class="cd"><input id="cn" class="in" placeholder="اسم المشترك"><input id="cp" class="in" placeholder="الجوال"><input id="cf" type="number" class="in" placeholder="قيمة الاشتراك"><button class="b1" onclick="ac()">+ إضافة مشترك</button></div><div id="lc"></div></div>
+<div id="p-al" class="pg"><h3 style="color:var(--p);margin-bottom:10px">التنبيهات</h3><div id="lal"></div></div>
+<div id="p-st" class="pg"><h3 style="color:var(--p);margin-bottom:10px">الإعدادات</h3><div class="cd"><input id="np" class="in" placeholder="رمز جديد (الحالي 2026)"><button class="b1" style="margin-bottom:8px" onclick="cp()">حفظ الرمز</button><button class="b2" onclick="sy()">🔄 تحديث من Google</button></div></div>
+</main>
+<nav class="nv"><div id="n-hm" class="ac" onclick="go('hm')">🏠<br>الرئيسية</div><div id="n-cl" onclick="go('cl')">👥<br>المشتركون</div><div id="n-fl" onclick="go('fl')">🚐<br>الأسطول</div><div id="n-ac" onclick="go('ac')">💳<br>الحسابات</div></nav>
 <script>
-const U = "https://google.com";
-let D = JSON.parse(localStorage.getItem('maidan_data')) || { pin: "2026", vehicles: [], accounts: [], clients: [] };
-document.getElementById('ad').valueAsDate = new Date();
-document.getElementById('pin').addEventListener('keyup', function(e) { if (e.key === 'Enter') go(); });
-
-function go() {
-  let v = document.getElementById('pin').value.trim();
-  if (v === String(D.pin) || v === "2026") {
-    document.getElementById('lock').style.display = 'none';
-    sync();
-  } else {
-    document.getElementById('err').style.display = 'block';
-  }
-}
-
-function out() {
-  document.getElementById('pin').value = '';
-  document.getElementById('lock').style.display = 'flex';
-}
-
-function pg(x) {
-  document.querySelectorAll('.pg').forEach(e => e.classList.remove('act'));
-  document.getElementById('pg-' + x).classList.add('act');
-  document.querySelectorAll('.ni').forEach(e => e.classList.remove('act'));
-  if (document.getElementById('n-' + x)) document.getElementById('n-' + x).classList.add('act');
-  window.scrollTo(0, 0);
-}
-
-function qacc(t) {
-  document.getElementById('at').value = t;
-  pg('acc');
-}
-
-async function save() {
-  localStorage.setItem('maidan_data', JSON.stringify(D));
-  ren();
-  document.getElementById('st').textContent = "⏳ جاري الحفظ...";
-  try {
-    await fetch(U, { method: 'POST', mode: 'no-cors', body: JSON.stringify(D) });
-    document.getElementById('st').textContent = "✓ محفوظ في Google";
-  } catch (e) {}
-}
-
-async function sync() {
-  try {
-    let r = await fetch(U);
-    let j = await r.json();
-    if (j && (j.vehicles || j.accounts || j.clients)) {
-      D = { pin: j.pin || "2026", vehicles: j.vehicles || [], accounts: j.accounts || [], clients: j.clients || [] };
-      localStorage.setItem('maidan_data', JSON.stringify(D));
-    }
-  } catch (e) {}
-  ren();
-}
-
-function addV() {
-  let p = document.getElementById('vp').value.trim();
-  if (!p) return alert("أدخل رقم اللوحة");
-  D.vehicles.unshift({
-    id: Date.now(),
-    plate: p,
-    model: document.getElementById('vm').value,
-    driver: document.getElementById('vd').value,
-    expiry: document.getElementById('vx').value
-  });
-  document.getElementById('vp').value = '';
-  document.getElementById('vm').value = '';
-  document.getElementById('vd').value = '';
-  save();
-}
-
-function addA() {
-  let a = parseFloat(document.getElementById('aa').value);
-  let t = document.getElementById('al').value.trim();
-  if (!a || !t) return alert("أدخل المبلغ والبيان");
-  D.accounts.unshift({
-    id: Date.now(),
-    type: document.getElementById('at').value,
-    cat: document.getElementById('ac').value,
-    amount: a,
-    title: t,
-    date: document.getElementById('ad').value
-  });
-  document.getElementById('aa').value = '';
-  document.getElementById('al').value = '';
-  save();
-}
-
-function addC() {
-  let n = document.getElementById('cn').value.trim();
-  if (!n) return alert("أدخل اسم العميل");
-  D.clients.unshift({
-    id: Date.now(),
-    name: n,
-    phone: document.getElementById('cp').value,
-    plan: document.getElementById('cl').value,
-    fee: parseFloat(document.getElementById('cf').value) || 0,
-    paid: false
-  });
-  document.getElementById('cn').value = '';
-  document.getElementById('cp').value = '';
-  document.getElementById('cl').value = '';
-  document.getElementById('cf').value = '';
-  save();
-}
-
-function payC(id) {
-  let c = D.clients.find(x => x.id === id);
-  if (c) { c.paid = !c.paid; save(); }
-}
-
-function del(k, i) {
-  if (confirm("تأكيد الحذف؟")) {
-    D[k] = D[k].filter(x => x.id !== i);
-    save();
-  }
-}
-
-function cpin() {
-  let p = document.getElementById('np').value.trim();
-  if (p.length >= 4) {
-    D.pin = p;
-    document.getElementById('np').value = '';
-    save();
-    alert("تم حفظ الرمز الجديد");
-  }
-}
-
-function cvat() {
-  let v = parseFloat(document.getElementById('vi').value) || 0;
-  document.getElementById('vr').textContent = "الإجمالي: " + (v * 1.15).toFixed(2) + " ر.س";
-}
-
-function bkp() {
-  let a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([JSON.stringify(D, null, 2)], { type: 'application/json' }));
-  a.download = 'maidan_backup.json';
-  a.click();
-}
-function ren() {
-  let i = 0, e = 0, al = [], now = new Date();
-  D.accounts.forEach(a => a.type === 'إيراد' ? i += Number(a.amount) : e += Number(a.amount));
-  document.getElementById('ki').textContent = i.toLocaleString() + " ر.س";
-  document.getElementById('ke').textContent = e.toLocaleString() + " ر.س";
-  document.getElementById('kn').textContent = (i - e).toLocaleString() + " ر.س";
-
-  document.getElementById('lv').innerHTML = D.vehicles.map(v => {
-    let b = '<span class="pl pg-a">بدون تاريخ</span>';
-    if (v.expiry) {
-      let df = Math.ceil((new Date(v.expiry) - now) / 864e5);
-      if (df <= 30) {
-        b = `<span class="pl pg-r">${df < 0 ? 'منتهي منذ ' + Math.abs(df) + ' يوم' : 'متبقي ' + df + ' يوم'}</span>`;
-        al.push(`<div class="it"><div><b>⚠️ مركبة ${v.plate}</b><br><small>السائق: ${v.driver || '-'}</small></div>${b}</div>`);
-      } else {
-        b = `<span class="pl pg-g">سارية (${df} يوم)</span>`;
-      }
-    }
-    return `<div class="it"><div><b>${v.plate}</b> • ${v.model || ''}<br><small>السائق: ${v.driver || '-'}</small><div style="margin-top:4px">${b}</div></div><button class="dl" onclick="del('vehicles',${v.id})">حذف</button></div>`;
-  }).join('');
-
-  document.getElementById('la').innerHTML = D.accounts.map(a =>
-    `<div class="it"><div><b>${a.title}</b> <span class="pl pg-a">${a.cat || ''}</span><br><small>${a.date || ''}</small></div><div><span class="pl ${a.type === 'إيراد' ? 'pg-g' : 'pg-r'}">${a.type === 'إيراد' ? '+' : '-'}${Number(a.amount).toLocaleString()} ر.س</span> <button class="dl" onclick="del('accounts',${a.id})">حذف</button></div></div>`
-  ).join('');
-
-  document.getElementById('lc').innerHTML = D.clients.map(c => {
-    if (!c.paid) al.push(`<div class="it"><div><b>💳 فاتورة غير مسددة: ${c.name}</b><br><small>${c.plan || ''}</small></div><span class="pl pg-r">${c.fee} ر.س</span></div>`);
-    return `<div class="it"><div><b>${c.name}</b> • <small>${c.phone || ''}</small><br><small>${c.plan || ''} (${c.fee} ر.س)</small><div style="margin-top:4px"><span class="pl ${c.paid ? 'pg-g' : 'pg-r'}">${c.paid ? 'مسدد ✓' : 'غير مسدد'}</span></div></div><div style="display:flex;gap:5px"><button class="ok" onclick="payC(${c.id})">${c.paid ? 'إلغاء' : 'سداد'}</button><button class="dl" onclick="del('clients',${c.id})">حذف</button></div></div>`;
-  }).join('');
-
-  document.getElementById('dot').style.display = al.length ? 'block' : 'none';
-  document.getElementById('lal').innerHTML = al.join('') || '<div class="cd" style="text-align:center;color:var(--m)">✅ جميع الوثائق والفواتير منتظمة</div>';
-}
-ren();
-
+const U="https://google.com";
+let D=JSON.parse(localStorage.getItem('maidan_data'))||{pin:"2026",vehicles:[],accounts:[],clients:[]};
+function inApp(){let v=document.getElementById('p').value.trim();if(v===String(D.pin)||v==="2026"){document.getElementById('lk').style.display='none';sy()}else alert("الرمز 2026")}
+function out(){document.getElementById('lk').style.display='flex'}
+function go(x){document.querySelectorAll('.pg').forEach(e=>e.classList.remove('ac'));document.getElementById('p-'+x).classList.add('ac');document.querySelectorAll('.nv div').forEach(e=>e.classList.remove('ac'));if(document.getElementById('n-'+x))document.getElementById('n-'+x).classList.add('ac')}
+function qa(t){document.getElementById('at').value=t;go('ac')}
+async function sv(){localStorage.setItem('maidan_data',JSON.stringify(D));rn();fetch(U,{method:'POST',mode:'no-cors',body:JSON.stringify(D)})}
+async function sy(){try{let r=await fetch(U),j=await r.json();if(j&&j.vehicles){D=j;localStorage.setItem('maidan_data',JSON.stringify(D))}}catch(e){}rn()}
+function av(){let p=document.getElementById('vp').value;if(p){D.vehicles.unshift({id:Date.now(),plate:p,model:document.getElementById('vm').value,driver:document.getElementById('vd').value,expiry:document.getElementById('vx').value});sv()}}
+function aa(){let a=document.getElementById('aa').value,t=document.getElementById('al').value;if(a&&t){D.accounts.unshift({id:Date.now(),type:document.getElementById('at').value,amount:a,title:t});sv()}}
+function ac(){let n=document.getElementById('cn').value;if(n){D.clients.unshift({id:Date.now(),name:n,phone:document.getElementById('cp').value,fee:document.getElementById('cf').value});sv()}}
+function dl(k,i){D[k]=D[k].filter(x=>x.id!==i);sv()}
+function cp(){let p=document.getElementById('np').value;if(p.length>=4){D.pin=p;sv();alert("تم")}}
+function rn(){document.getElementById('lv').innerHTML=D.vehicles.map(v=>`<div class="it"><div><b>${v.plate}</b> (${v.model||''})<br><small>${v.driver||''} ${v.expiry||''}</small></div><button onclick="dl('vehicles',${v.id})">حذف</button></div>`).join('');document.getElementById('la').innerHTML=D.accounts.map(a=>`<div class="it"><div><b>${a.title}</b> (${a.type})</div><div><b>${a.amount}</b> <button onclick="dl('accounts',${a.id})">حذف</button></div></div>`).join('');document.getElementById('lc').innerHTML=D.clients.map(c=>`<div class="it"><div><b>${c.name}</b><br><small>${c.phone||''} - ${c.fee||0}</small></div><button onclick="dl('clients',${c.id})">حذف</button></div>`).join('');document.getElementById('lal').innerHTML=D.vehicles.filter(v=>v.expiry).map(v=>`<div class="it"><b>مركبة ${v.plate}</b><span>${v.expiry}</span></div>`).join('')||'لا توجد تنبيهات'}
+rn();
+</script></body></html>
