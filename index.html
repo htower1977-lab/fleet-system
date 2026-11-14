@@ -1,263 +1,92 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
 <title>ميدان العز للنقليات • مساحة الإدارة</title>
 <link href="https://googleapis.com" rel="stylesheet">
 <style>
-  :root { --primary:#1F3629; --accent:#C5A059; --bg:#F6F4EF; --card:#FFFFFF; --text:#1A241E; --muted:#6B7870; --danger:#D94343; --success:#248A52; }
+  :root { --p:#1F3629; --a:#C5A059; --bg:#F6F4EF; --c:#FFFFFF; --t:#1A241E; --m:#6B7870; }
   * { box-sizing:border-box; margin:0; padding:0; font-family:'IBM Plex Sans Arabic',sans-serif; }
-  body { background:var(--bg); color:var(--text); min-height:100vh; padding-bottom:110px; }
-  #lockScreen { position:fixed; inset:0; background:linear-gradient(160deg,#16281E,#243E30); z-index:9999; display:flex; align-items:center; justify-content:center; padding:24px; color:#fff; }
-  .lock-card { background:rgba(255,255,255,0.08); backdrop-filter:blur(20px); border:1px solid rgba(197,160,89,0.4); border-radius:30px; padding:36px 28px; width:100%; max-width:380px; text-align:center; }
-  .lock-input { width:100%; padding:15px; margin:20px 0 14px; border-radius:16px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.25); color:#fff; font-size:22px; text-align:center; letter-spacing:6px; outline:none; }
-  .lock-btn { width:100%; padding:15px; border-radius:16px; border:none; background:linear-gradient(135deg,#D4AF66,#B38D44); color:#16281E; font-weight:700; font-size:16px; cursor:pointer; }
-  .top-header { background:linear-gradient(145deg,var(--primary),#16281E); color:#fff; padding:20px 20px 26px; border-radius:0 0 30px 30px; display:flex; justify-content:space-between; align-items:center; }
-  .brand-title h1 { font-size:21px; color:#E8CFA0; }
-  .brand-title p { font-size:12.5px; color:rgba(255,255,255,0.75); }
-  .icon-btn { width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(232,207,160,0.35); color:#E8CFA0; display:flex; align-items:center; justify-content:center; cursor:pointer; }
-  .sync-pill { display:inline-block; font-size:11px; background:rgba(255,255,255,0.1); padding:4px 10px; border-radius:20px; margin-top:6px; color:#A8E6CF; }
-  .container { max-width:680px; margin:0 auto; padding:20px 18px; }
-  .hero-slogan { text-align:center; font-size:22px; font-weight:700; color:var(--primary); margin:4px 0 18px; }
-  .hero-card, .form-card { background:var(--card); border-radius:24px; padding:20px; box-shadow:0 10px 30px rgba(31,54,41,0.06); border:1px solid rgba(31,54,41,0.08); margin-bottom:20px; }
-  .hero-top { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:18px; }
-  .van-box { width:125px; height:85px; border-radius:18px; background:#FBF3E4; display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1px solid rgba(197,160,89,0.3); }
-  .quick-btns, .dest-grid, .row-2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  .btn-primary { background:var(--primary); color:#fff; border:none; padding:13px; border-radius:15px; font-size:15px; font-weight:600; cursor:pointer; }
-  .btn-outline { background:#fff; color:var(--primary); border:1.5px solid rgba(31,54,41,0.25); padding:13px; border-radius:15px; font-size:15px; font-weight:600; cursor:pointer; }
-  .stats-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:22px; }
-  .stat-mini { background:var(--card); padding:14px 10px; border-radius:18px; text-align:center; border:1px solid rgba(31,54,41,0.08); }
-  .stat-mini span { display:block; font-size:11.5px; color:var(--muted); margin-bottom:4px; }
-  .section-label { font-size:17px; font-weight:700; color:var(--primary); margin-bottom:14px; }
-  .dest-card { background:var(--card); border-radius:24px; padding:22px 16px; text-align:center; border:1px solid rgba(31,54,41,0.08); cursor:pointer; }
-  .dest-icon { width:52px; height:52px; border-radius:50%; background:var(--primary); color:#E8CFA0; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-size:22px; }
-  .bottom-nav-wrap { position:fixed; bottom:16px; left:16px; right:16px; z-index:900; display:flex; justify-content:center; }
-  .bottom-nav { background:rgba(29,48,37,0.95); backdrop-filter:blur(18px); border-radius:26px; padding:10px 14px; width:100%; max-width:520px; display:grid; grid-template-columns:repeat(4,1fr); }
-  .nav-item { display:flex; flex-direction:column; align-items:center; gap:4px; color:rgba(255,255,255,0.65); font-size:11.5px; cursor:pointer; padding:6px; border-radius:16px; }
-  .nav-item.active { color:#E8CFA0; background:rgba(255,255,255,0.1); font-weight:700; }
-  .page { display:none; } .page.active { display:block; }
-  .form-group { margin-bottom:12px; } .form-group label { display:block; font-size:13px; font-weight:600; color:var(--primary); margin-bottom:5px; }
-  .form-control { width:100%; padding:12px; border-radius:13px; border:1px solid rgba(31,54,41,0.18); background:#FAF9F6; font-size:14.5px; }
-  .list-item { background:var(--card); border-radius:18px; padding:16px; margin-bottom:10px; border:1px solid rgba(31,54,41,0.08); display:flex; justify-content:space-between; align-items:center; }
-  .pill { padding:3px 10px; border-radius:20px; font-size:11.5px; font-weight:600; }
-  .pill-green { background:rgba(36,138,82,0.12); color:var(--success); } .pill-red { background:rgba(217,67,67,0.12); color:var(--danger); } .pill-gold { background:rgba(197,160,89,0.16); color:#9A7630; }
-  .del-btn { background:rgba(217,67,67,0.1); color:var(--danger); border:none; padding:7px 11px; border-radius:10px; font-size:12px; font-weight:600; cursor:pointer; }
+  body { background:var(--bg); color:var(--t); padding-bottom:105px; }
+  #lock { position:fixed; inset:0; background:linear-gradient(160deg,#16281E,#243E30); z-index:99; display:flex; align-items:center; justify-content:center; padding:20px; color:#fff; }
+  .lcard { background:rgba(255,255,255,0.08); backdrop-filter:blur(18px); border:1px solid rgba(197,160,89,0.4); border-radius:28px; padding:32px 24px; width:100%; max-width:360px; text-align:center; }
+  .linp { width:100%; padding:14px; margin:18px 0 12px; border-radius:14px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.25); color:#fff; font-size:22px; text-align:center; letter-spacing:6px; }
+  .lbtn { width:100%; padding:14px; border-radius:14px; border:none; background:linear-gradient(135deg,#D4AF66,#B38D44); color:#16281E; font-weight:700; font-size:16px; cursor:pointer; }
+  header { background:linear-gradient(145deg,var(--p),#16281E); color:#fff; padding:20px 20px 24px; border-radius:0 0 28px 28px; display:flex; justify-content:space-between; align-items:center; }
+  .ibtn { width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(232,207,160,0.35); color:#E8CFA0; cursor:pointer; font-size:16px; }
+  .sync { display:inline-block; font-size:11px; background:rgba(255,255,255,0.12); padding:3px 10px; border-radius:20px; margin-top:5px; color:#A8E6CF; }
+  main { max-width:650px; margin:0 auto; padding:18px; }
+  .card { background:var(--c); border-radius:22px; padding:18px; box-shadow:0 8px 24px rgba(31,54,41,0.06); border:1px solid rgba(31,54,41,0.08); margin-bottom:16px; }
+  .g2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:18px; }
+  .btn1 { background:var(--p); color:#fff; border:none; padding:12px; border-radius:14px; font-weight:600; cursor:pointer; width:100%; }
+  .btn2 { background:#fff; color:var(--p); border:1.5px solid rgba(31,54,41,0.25); padding:12px; border-radius:14px; font-weight:600; cursor:pointer; width:100%; }
+  .dcard { background:var(--c); border-radius:22px; padding:20px 14px; text-align:center; border:1px solid rgba(31,54,41,0.08); cursor:pointer; }
+  .dico { width:50px; height:50px; border-radius:50%; background:var(--p); color:#E8CFA0; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; font-size:20px; }
+  .inp { width:100%; padding:11px; border-radius:12px; border:1px solid rgba(31,54,41,0.18); background:#FAF9F6; margin-bottom:10px; font-size:14px; }
+  .item { background:var(--c); border-radius:16px; padding:14px; margin-bottom:10px; border:1px solid rgba(31,54,41,0.08); display:flex; justify-content:space-between; align-items:center; }
+  .del { background:rgba(217,67,67,0.1); color:#D94343; border:none; padding:6px 10px; border-radius:9px; font-size:12px; font-weight:600; cursor:pointer; }
+  .nav { position:fixed; bottom:14px; left:14px; right:14px; max-width:500px; margin:0 auto; background:rgba(29,48,37,0.95); backdrop-filter:blur(16px); border-radius:24px; padding:10px; display:grid; grid-template-columns:repeat(4,1fr); text-align:center; z-index:90; }
+  .ni { color:rgba(255,255,255,0.65); font-size:11.5px; cursor:pointer; padding:5px; border-radius:14px; }
+  .ni.act { color:#E8CFA0; background:rgba(255,255,255,0.1); font-weight:700; }
+  .pg { display:none; } .pg.act { display:block; }
 </style>
 </head>
 <body>
-<div id="lockScreen">
-  <div class="lock-card">
-    <div style="font-size:36px; margin-bottom:12px;">🔐</div>
-    <h2 style="font-size:22px; color:#E8CFA0;">ميدان العز للنقليات</h2>
-    <p style="font-size:13px; color:rgba(255,255,255,0.7); margin-top:4px;">مساحة الإدارة السحابية الآمنة</p>
-    <input type="password" id="pinInput" class="lock-input" placeholder="••••" inputmode="numeric">
-    <button class="lock-btn" onclick="unlockApp()">دخول النظام</button>
-    <p id="lockError" style="color:#FF7B7B; font-size:12.5px; margin-top:10px; display:none;">الرمز السري غير صحيح</p>
+<div id="lock"><div class="lcard"><div style="font-size:34px;margin-bottom:10px;">🔐</div><h2 style="color:#E8CFA0;">ميدان العز للنقليات</h2><p style="font-size:13px;opacity:0.75;margin-top:4px;">مساحة الإدارة السحابية الآمنة</p><input type="password" id="pin" class="linp" placeholder="••••" inputmode="numeric"><button class="lbtn" onclick="go()">دخول النظام</button><p id="err" style="color:#FF7B7B;font-size:12px;margin-top:8px;display:none;">الرمز غير صحيح</p></div></div>
+<header><div style="display:flex;gap:8px;"><button class="ibtn" onclick="pg('alerts')">🔔</button><button class="ibtn" onclick="pg('set')">⚙️</button></div><div style="text-align:left;"><h1 style="font-size:20px;color:#E8CFA0;">ميدان العز</h1><p style="font-size:12px;opacity:0.75;">للنقليات • مساحة الإدارة</p><div class="sync" id="st">☁️ متزامن مع Google</div></div></header>
+<main>
+  <div id="pg-home" class="pg act">
+    <h2 style="text-align:center;color:var(--p);margin:6px 0 16px;font-size:20px;">كل رحلة تبدأ بتنظيم أفضل</h2>
+    <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div><h3 style="color:var(--p);">ميدان العز للنقليات</h3><p style="font-size:13px;color:var(--m);margin-top:4px;">مساحة واضحة لإدارة النقل والأسطول</p></div><div style="width:95px;height:70px;background:#FBF3E4;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:34px;">🚐</div></div><div class="g2"><button class="btn1" onclick="qacc('إيراد')">+ تسجيل إيراد</button><button class="btn2" onclick="qacc('مصروف')">- تسجيل مصروف</button></div></div>
+    <div class="g3"><div class="card" style="text-align:center;padding:12px;margin:0;"><small style="color:var(--m);">الإيرادات</small><div id="ki" style="font-weight:700;color:#248A52;">0</div></div><div class="card" style="text-align:center;padding:12px;margin:0;"><small style="color:var(--m);">المصروفات</small><div id="ke" style="font-weight:700;color:#D94343;">0</div></div><div class="card" style="text-align:center;padding:12px;margin:0;"><small style="color:var(--m);">الصافي</small><div id="kn" style="font-weight:700;color:var(--p);">0</div></div></div>
+    <h3 style="color:var(--p);margin-bottom:12px;font-size:16px;">• اختر وجهتك</h3>
+    <div class="g2">
+      <div class="dcard" onclick="pg('fleet')"><div class="dico">🚐</div><h4>الأسطول</h4><small id="sf" style="color:var(--m);">0 مركبات</small></div>
+      <div class="dcard" onclick="pg('acc')"><div class="dico">📄</div><h4>الحسابات</h4><small id="sa" style="color:var(--m);">0 قيود</small></div>
+      <div class="dcard" onclick="pg('alerts')"><div class="dico">🔔</div><h4>التنبيهات</h4><small style="color:var(--m);">الوثائق</small></div>
+      <div class="dcard" onclick="pg('cli')"><div class="dico">👥</div><h4>المشتركون</h4><small id="sc" style="color:var(--m);">0 عملاء</small></div>
+    </div>
+    <div style="text-align:center;margin-top:20px;"><button onclick="out()" style="background:none;border:none;color:var(--p);font-weight:700;cursor:pointer;">🔒 تسجيل الخروج</button></div>
   </div>
-</div>
-<header class="top-header">
-  <div style="display:flex; gap:10px;">
-    <button class="icon-btn" onclick="switchPage('alerts')">🔔</button>
-    <button class="icon-btn" onclick="switchPage('settings')">⚙️</button>
-  </div>
-  <div class="brand-title" style="text-align:left;">
-    <h1>ميدان العز</h1>
-    <p>للنقليات • مساحة الإدارة</p>
-    <div class="sync-pill" id="syncStatus">☁️ متزامن مع Google</div>
-  </div>
-</header>
-
-<main class="container">
-  <section id="page-home" class="page active">
-    <h2 class="hero-slogan">كل رحلة تبدأ بتنظيم أفضل</h2>
-    <div class="hero-card">
-      <div class="hero-top">
-        <div>
-          <h2 style="font-size:19px; color:var(--primary);">ميدان العز للنقليات</h2>
-          <p style="font-size:13.5px; color:var(--muted); margin-top:6px;">مساحة واضحة لإدارة النقل، الأسطول، والحسابات</p>
-        </div>
-        <div class="van-box">🚐</div>
-      </div>
-      <div class="quick-btns">
-        <button class="btn-primary" onclick="openQuickAccount('إيراد')">+ تسجيل إيراد</button>
-        <button class="btn-outline" onclick="openQuickAccount('مصروف')">- تسجيل مصروف</button>
-      </div>
-    </div>
-
-    <div class="stats-strip">
-      <div class="stat-mini"><span>إجمالي الإيرادات</span><strong id="kpiIncome" style="color:var(--success);">0 ر.س</strong></div>
-      <div class="stat-mini"><span>إجمالي المصروفات</span><strong id="kpiExpense" style="color:var(--danger);">0 ر.س</strong></div>
-      <div class="stat-mini"><span>صافي الربح</span><strong id="kpiNet" style="color:var(--primary);">0 ر.س</strong></div>
-    </div>
-
-    <div class="section-label">اختر وجهتك</div>
-    <div class="dest-grid">
-      <div class="dest-card" onclick="switchPage('fleet')"><div class="dest-icon">🚐</div><h3>الأسطول</h3><p id="subFleet" style="font-size:12px;color:var(--muted);">0 مركبات</p></div>
-      <div class="dest-card" onclick="switchPage('accounts')"><div class="dest-icon">📄</div><h3>الحسابات</h3><p id="subAccounts" style="font-size:12px;color:var(--muted);">0 قيود</p></div>
-      <div class="dest-card" onclick="switchPage('alerts')"><div class="dest-icon">🔔</div><h3>التنبيهات</h3><p id="subAlerts" style="font-size:12px;color:var(--muted);">0 تنبيهات</p></div>
-      <div class="dest-card" onclick="switchPage('clients')"><div class="dest-icon">👥</div><h3>المشتركون</h3><p id="subClients" style="font-size:12px;color:var(--muted);">0 مشتركين</p></div>
-    </div>
-
-    <div style="text-align:center; margin-top:26px; color:var(--muted); font-size:12.5px;">
-      <p>✓ محفوظ سحابياً ومزامن تلقائياً بين الآيفون والكمبيوتر</p>
-      <button onclick="lockApp()" style="background:none; border:none; color:var(--primary); font-weight:700; margin-top:10px; cursor:pointer;">🔒 تسجيل الخروج</button>
-    </div>
-  </section>
-
-  <section id="page-fleet" class="page">
-    <div class="section-label">إدارة الأسطول</div>
-    <div class="form-card">
-      <div class="row-2">
-        <div class="form-group"><label>رقم اللوحة</label><input type="text" id="vPlate" class="form-control"></div>
-        <div class="form-group"><label>نوع المركبة</label><input type="text" id="vModel" class="form-control"></div>
-      </div>
-      <div class="row-2">
-        <div class="form-group"><label>اسم السائق</label><input type="text" id="vDriver" class="form-control"></div>
-        <div class="form-group"><label>انتهاء الوثائق</label><input type="date" id="vExpiry" class="form-control"></div>
-      </div>
-      <button class="btn-primary" style="width:100%;" onclick="addVehicle()">+ إضافة مركبة</button>
-    </div>
-    <div id="vehiclesList"></div>
-  </section>
-
-  <section id="page-accounts" class="page">
-    <div class="section-label">الحسابات والضريبة</div>
-    <div class="form-card">
-      <div class="row-2">
-        <div class="form-group"><label>النوع</label><select id="accType" class="form-control"><option value="إيراد">إيراد (+)</option><option value="مصروف">مصروف (-)</option></select></div>
-        <div class="form-group"><label>المبلغ</label><input type="number" id="accAmount" class="form-control"></div>
-      </div>
-      <div class="row-2">
-        <div class="form-group"><label>البيان</label><input type="text" id="accTitle" class="form-control"></div>
-        <div class="form-group"><label>التاريخ</label><input type="date" id="accDate" class="form-control"></div>
-      </div>
-      <button class="btn-primary" style="width:100%;" onclick="addAccount()">حفظ القيد</button>
-    </div>
-    <div id="accountsList"></div>
-  </section>
-
-  <section id="page-clients" class="page">
-    <div class="section-label">المشتركون والعملاء</div>
-    <div class="form-card">
-      <div class="row-2">
-        <div class="form-group"><label>الاسم</label><input type="text" id="cName" class="form-control"></div>
-        <div class="form-group"><label>الجوال</label><input type="tel" id="cPhone" class="form-control"></div>
-      </div>
-      <div class="row-2">
-        <div class="form-group"><label>الاشتراك</label><input type="text" id="cPlan" class="form-control"></div>
-        <div class="form-group"><label>القيمة</label><input type="number" id="cFee" class="form-control"></div>
-      </div>
-      <button class="btn-primary" style="width:100%;" onclick="addClient()">+ إضافة مشترك</button>
-    </div>
-    <div id="clientsList"></div>
-  </section>
-
-  <section id="page-alerts" class="page"><div class="section-label">التنبيهات</div><div id="alertsList"></div></section>
-
-  <section id="page-settings" class="page">
-    <div class="section-label">الإعدادات</div>
-    <div class="form-card">
-      <div class="form-group"><label>تغيير الرمز السري (الحالي: 2026)</label><input type="text" id="newPinInput" class="form-control"></div>
-      <button class="btn-primary" style="width:100%; margin-bottom:10px;" onclick="changePin()">حفظ الرمز</button>
-      <button class="btn-outline" style="width:100%;" onclick="syncFromCloud()">🔄 تحديث البيانات من Google</button>
-    </div>
-  </section>
+  <div id="pg-fleet" class="pg"><h3 style="color:var(--p);margin-bottom:12px;">إدارة الأسطول</h3><div class="card"><div class="g2"><input id="vp" class="inp" placeholder="رقم اللوحة"><input id="vm" class="inp" placeholder="نوع المركبة"></div><div class="g2"><input id="vd" class="inp" placeholder="اسم السائق"><input id="vx" type="date" class="inp"></div><button class="btn1" onclick="addV()">+ إضافة مركبة</button></div><div id="lv"></div></div>
+  <div id="pg-acc" class="pg"><h3 style="color:var(--p);margin-bottom:12px;">الحسابات</h3><div class="card"><div class="g2"><select id="at" class="inp"><option value="إيراد">إيراد (+)</option><option value="مصروف">مصروف (-)</option></select><input id="aa" type="number" class="inp" placeholder="المبلغ"></div><div class="g2"><input id="al" class="inp" placeholder="البيان"><input id="ad" type="date" class="inp"></div><button class="btn1" onclick="addA()">حفظ القيد</button></div><div id="la"></div></div>
+  <div id="pg-cli" class="pg"><h3 style="color:var(--p);margin-bottom:12px;">المشتركون</h3><div class="card"><div class="g2"><input id="cn" class="inp" placeholder="اسم المشترك"><input id="cp" class="inp" placeholder="الجوال"></div><div class="g2"><input id="cl" class="inp" placeholder="الاشتراك"><input id="cf" type="number" class="inp" placeholder="القيمة"></div><button class="btn1" onclick="addC()">+ إضافة مشترك</button></div><div id="lc"></div></div>
+  <div id="pg-alerts" class="pg"><h3 style="color:var(--p);margin-bottom:12px;">التنبيهات</h3><div id="lal"></div></div>
+  <div id="pg-set" class="pg"><h3 style="color:var(--p);margin-bottom:12px;">الإعدادات</h3><div class="card"><input id="np" class="inp" placeholder="رمز سري جديد (الحالي: 2026)"><button class="btn1" style="margin-bottom:10px;" onclick="cpin()">حفظ الرمز</button><button class="btn2" onclick="sync()">🔄 تحديث من Google</button></div></div>
 </main>
-
-<div class="bottom-nav-wrap">
-  <nav class="bottom-nav">
-    <div class="nav-item active" id="nav-home" onclick="switchPage('home')"><span>🏠</span><span>الرئيسية</span></div>
-    <div class="nav-item" id="nav-clients" onclick="switchPage('clients')"><span>👥</span><span>المشتركون</span></div>
-    <div class="nav-item" id="nav-fleet" onclick="switchPage('fleet')"><span>🚐</span><span>الأسطول</span></div>
-    <div class="nav-item" id="nav-accounts" onclick="switchPage('accounts')"><span>💳</span><span>الحسابات</span></div>
-  </nav>
-</div>
-
+<nav class="nav">
+  <div class="ni act" id="n-home" onclick="pg('home')">🏠<br>الرئيسية</div>
+  <div class="ni" id="n-cli" onclick="pg('cli')">👥<br>المشتركون</div>
+  <div class="ni" id="n-fleet" onclick="pg('fleet')">🚐<br>الأسطول</div>
+  <div class="ni" id="n-acc" onclick="pg('acc')">💳<br>الحسابات</div>
+</nav>
 <script>
-  const CLOUD_URL = "https://google.com";
-  let appData = JSON.parse(localStorage.getItem('maidan_data')) || { pin:"2026", vehicles:[], accounts:[], clients:[] };
-  document.getElementById('accDate').valueAsDate = new Date();
-  function unlockApp() {
-    if (document.getElementById('pinInput').value.trim() === String(appData.pin)) { document.getElementById('lockScreen').style.display='none'; syncFromCloud(); }
-    else { document.getElementById('lockError').style.display='block'; }
-  }
-  function lockApp() { document.getElementById('pinInput').value=''; document.getElementById('lockScreen').style.display='flex'; }
-  function switchPage(id) {
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    document.getElementById('page-'+id).classList.add('active');
-    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-    if(document.getElementById('nav-'+id)) document.getElementById('nav-'+id).classList.add('active');
-  }
-  function openQuickAccount(t) { document.getElementById('accType').value=t; switchPage('accounts'); }
-  async function saveAll() {
-    localStorage.setItem('maidan_data', JSON.stringify(appData)); renderAll();
-    try { await fetch(CLOUD_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(appData) }); document.getElementById('syncStatus').textContent="☁️ محفوظ في Google"; } catch(e){}
-  }
-  async function syncFromCloud() {
-    try {
-      const res = await fetch(CLOUD_URL); const d = await res.json();
-      if(d && (d.vehicles||d.accounts||d.clients)) { appData={pin:d.pin||"2026", vehicles:d.vehicles||[], accounts:d.accounts||[], clients:d.clients||[]}; localStorage.setItem('maidan_data',JSON.stringify(appData)); }
-    } catch(e){} renderAll();
-  }
-  function addVehicle() { const p=document.getElementById('vPlate').value.trim(); if(!p)return; appData.vehicles.unshift({id:Date.now(), plate:p, model:document.getElementById('vModel').value, driver:document.getElementById('vDriver').value, expiry:document.getElementById('vExpiry').value}); saveAll(); }
-  function addAccount() { const a=parseFloat(document.getElementById('accAmount').value), t=document.getElementById('accTitle').value.trim(); if(!a||!t)return; appData.accounts.unshift({id:Date.now(), type:document.getElementById('accType').value, amount:a, title:t, date:document.getElementById('accDate').value}); saveAll(); }
-  function addClient() { const n=document.getElementById('cName').value.trim(); if(!n)return; appData.clients.unshift({id:Date.now(), name:n, phone:document.getElementById('cPhone').value, plan:document.getElementById('cPlan').value, fee:parseFloat(document.getElementById('cFee').value)||0}); saveAll(); }
-  function del(s,id) { appData[s]=appData[s].filter(x=>x.id!==id); saveAll(); }
-  function changePin() { const p=document.getElementById('newPinInput').value.trim(); if(p.length>=4){appData.pin=p; saveAll(); alert("تم الحفظ");} }
-  function renderAll() {
-    let inc=0, exp=0; appData.accounts.forEach(a=>a.type==='إيراد'?inc+=Number(a.amount):exp+=Number(a.amount));
-    document.getElementById('kpiIncome').textContent=inc+" ر.س"; document.getElementById('kpiExpense').textContent=exp+" ر.س"; document.getElementById('kpiNet').textContent=(inc-exp)+" ر.س";
-<div class="bottom-nav-wrap">
-  <nav class="bottom-nav">
-    <div class="nav-item active" id="nav-home" onclick="switchPage('home')"><span>🏠</span><span>الرئيسية</span></div>
-    <div class="nav-item" id="nav-clients" onclick="switchPage('clients')"><span>👥</span><span>المشتركون</span></div>
-    <div class="nav-item" id="nav-fleet" onclick="switchPage('fleet')"><span>🚐</span><span>الأسطول</span></div>
-    <div class="nav-item" id="nav-accounts" onclick="switchPage('accounts')"><span>💳</span><span>الحسابات</span></div>
-  </nav>
-</div>
+  const URL_S="https://google.com";
+  let D=JSON.parse(localStorage.getItem('maidan_data'))||{pin:"2026",vehicles:[],accounts:[],clients:[]};
+  document.getElementById('ad').valueAsDate=new Date();
+  function go(){if(document.getElementById('pin').value.trim()===String(D.pin)){document.getElementById('lock').style.display='none';sync();}else{document.getElementById('err').style.display='block';}}
+  function out(){document.getElementById('pin').value='';document.getElementById('lock').style.display='flex';}
+يُرجى استخدام الرمز البرمجي بحذر.
+function pg(x){document.querySelectorAll('.pg').forEach(e=>e.classList.remove('act'));document.getElementById('pg-'+x).classList.add('act');document.querySelectorAll('.ni').forEach(e=>e.classList.remove('act'));if(document.getElementById('n-'+x))document.getElementById('n-'+x).classList.add('act');}
+function qacc(t){document.getElementById('at').value=t;pg('acc');}
+async function save(){localStorage.setItem('maidan_data',JSON.stringify(D));ren();try{await fetch(URL_S,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(D)});document.getElementById('st').textContent="☁️ محفوظ في Google";}catch(e){}}
+async function sync(){try{const r=await fetch(URL_S);const j=await r.json();if(j&&(j.vehicles||j.accounts||j.clients)){D={pin:j.pin||"2026",vehicles:j.vehicles||[],accounts:j.accounts||[],clients:j.clients||[]};localStorage.setItem('maidan_data',JSON.stringify(D));}}catch(e){}ren();}
+function addV(){let p=document.getElementById('vp').value.trim();if(!p)return;D.vehicles.unshift({id:Date.now(),plate:p,model:document.getElementById('vm').value,driver:document.getElementById('vd').value,expiry:document.getElementById('vx').value});save();}
+function addA(){let a=parseFloat(document.getElementById('aa').value),t=document.getElementById('al').value.trim();if(!a||!t)return;D.accounts.unshift({id:Date.now(),type:document.getElementById('at').value,amount:a,title:t,date:document.getElementById('ad').value});save();}
+function addC(){let n=document.getElementById('cn').value.trim();if(!n)return;D.clients.unshift({id:Date.now(),name:n,phone:document.getElementById('cp').value,plan:document.getElementById('cl').value,fee:parseFloat(document.getElementById('cf').value)||0});save();}
+function del(k,i){D[k]=D[k].filter(x=>x.id!==i);save();}
+function cpin(){let p=document.getElementById('np').value.trim();if(p.length>=4){D.pin=p;save();alert("تم الحفظ");}}
+function ren(){
+let i=0,e=0;D.accounts.forEach(a=>a.type==='إيراد'?i+=Number(a.amount):e+=Number(a.amount));
+document.getElementById('ki').textContent=i+" ر.س";document.getElementById('ke').textContent=e+" ر.س";document.getElementById('kn').textContent=(i-e)+" ر.س";
+document.getElementById('sf').textContent=D.vehicles.length+" مركبات";document.getElementById('sa').textContent=D.accounts.length+" قيود";document.getElementById('sc').textContent=D.clients.length+" عملاء";
+document.getElementById('lv').innerHTML=D.vehicles.map(v=><div class="item"><div><b>${v.plate}</b> (${v.model||''})<br><small>${v.driver||''} • ${v.expiry||''}</small></div><button class="del" onclick="del('vehicles',${v.id})">حذف</button></div>).join('');
+document.getElementById('la').innerHTML=D.accounts.map(a=><div class="item"><div><b>${a.title}</b><br><small>${a.date||''}</small></div><div><b style="color:${a.type==='إيراد'?'#248A52':'#D94343'}">${a.amount} ر.س</b> <button class="del" onclick="del('accounts',${a.id})">حذف</button></div></div>).join('');
+document.getElementById('lc').innerHTML=D.clients.map(c=><div class="item"><div><b>${c.name}</b><br><small>${c.phone||''} • ${c.plan||''} (${c.fee} ر.س)</small></div><button class="del" onclick="del('clients',${c.id})">حذف</button></div>).join('');
+document.getElementById('lal').innerHTML=D.vehicles.filter(v=>v.expiry).map(v=><div class="item"><div><b>مركبة ${v.plate}</b><br><small>تاريخ الانتهاء: ${v.expiry}</small></div></div>).join('')||'لا توجد تنبيهات';
+}
+ren();
 
-<script>
-  const CLOUD_URL = "https://google.com";
-  let appData = JSON.parse(localStorage.getItem('maidan_data')) || { pin:"2026", vehicles:[], accounts:[], clients:[] };
-  document.getElementById('accDate').valueAsDate = new Date();
-  function unlockApp() {
-    if (document.getElementById('pinInput').value.trim() === String(appData.pin)) { document.getElementById('lockScreen').style.display='none'; syncFromCloud(); }
-    else { document.getElementById('lockError').style.display='block'; }
-  }
-  function lockApp() { document.getElementById('pinInput').value=''; document.getElementById('lockScreen').style.display='flex'; }
-  function switchPage(id) {
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    document.getElementById('page-'+id).classList.add('active');
-    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-    if(document.getElementById('nav-'+id)) document.getElementById('nav-'+id).classList.add('active');
-  }
-  function openQuickAccount(t) { document.getElementById('accType').value=t; switchPage('accounts'); }
-  async function saveAll() {
-    localStorage.setItem('maidan_data', JSON.stringify(appData)); renderAll();
-    try { await fetch(CLOUD_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(appData) }); document.getElementById('syncStatus').textContent="☁️ محفوظ في Google"; } catch(e){}
-  }
-  async function syncFromCloud() {
-    try {
-      const res = await fetch(CLOUD_URL); const d = await res.json();
-      if(d && (d.vehicles||d.accounts||d.clients)) { appData={pin:d.pin||"2026", vehicles:d.vehicles||[], accounts:d.accounts||[], clients:d.clients||[]}; localStorage.setItem('maidan_data',JSON.stringify(appData)); }
-    } catch(e){} renderAll();
-  }
-  function addVehicle() { const p=document.getElementById('vPlate').value.trim(); if(!p)return; appData.vehicles.unshift({id:Date.now(), plate:p, model:document.getElementById('vModel').value, driver:document.getElementById('vDriver').value, expiry:document.getElementById('vExpiry').value}); saveAll(); }
-  function addAccount() { const a=parseFloat(document.getElementById('accAmount').value), t=document.getElementById('accTitle').value.trim(); if(!a||!t)return; appData.accounts.unshift({id:Date.now(), type:document.getElementById('accType').value, amount:a, title:t, date:document.getElementById('accDate').value}); saveAll(); }
-  function addClient() { const n=document.getElementById('cName').value.trim(); if(!n)return; appData.clients.unshift({id:Date.now(), name:n, phone:document.getElementById('cPhone').value, plan:document.getElementById('cPlan').value, fee:parseFloat(document.getElementById('cFee').value)||0}); saveAll(); }
-  function del(s,id) { appData[s]=appData[s].filter(x=>x.id!==id); saveAll(); }
-  function changePin() { const p=document.getElementById('newPinInput').value.trim(); if(p.length>=4){appData.pin=p; saveAll(); alert("تم الحفظ");} }
-  function renderAll() {
-    let inc=0, exp=0; appData.accounts.forEach(a=>a.type==='إيراد'?inc+=Number(a.amount):exp+=Number(a.amount));
-    document.getElementById('kpiIncome').textContent=inc+" ر.س"; document.getElementById('kpiExpense').textContent=exp+" ر.س"; document.getElementById('kpiNet').textContent=(inc-exp)+" ر.س";
-    document.getElementById('subFleet').textContent=appData.vehicles.length+" مركبات"; document.getElementById('subAccounts').textContent=appData.accounts.length+" قيود"; document.getElementById('subClients').textContent=appData.clients.length+" مشتركين";
-    document.getElementById('vehiclesList').innerHTML=appData.vehicles.map(v=>`<div class="list-item"><div><strong>${v.plate}</strong> (${v.model||''})<br><small>${v.driver||''} • ${v.expiry||''}</small></div><button class="del-btn" onclick="del('vehicles',${v.id})">حذف</button></div>`).join('');
-    document.getElementById('accountsList').innerHTML=appData.accounts.map(a=>`<div class="list-item"><div><strong>${a.title}</strong><br><small>${a.date||''}</small></div><div><span class="pill ${a.type==='إيراد'?'pill-green':'pill-red'}">${a.amount} ر.س</span> <button class="del-btn" onclick="del('accounts',${a.id})">حذف</button></div></div>`).join('');
-    document.getElementById('clientsList').innerHTML=appData.clients.map(c=>`<div class="list-item"><div><strong>${c.name}</strong><br><small>${c.phone||''} • ${c.plan||''} (${c.fee} ر.س)</small></div><button class="del-btn" onclick="del('clients',${c.id})">حذف</button></div>`).join('');
-  }
-  renderAll();
-</script>
-</body>
-</html>
+
