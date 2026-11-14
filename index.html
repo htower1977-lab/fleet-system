@@ -209,3 +209,55 @@
   function renderAll() {
     let inc=0, exp=0; appData.accounts.forEach(a=>a.type==='إيراد'?inc+=Number(a.amount):exp+=Number(a.amount));
     document.getElementById('kpiIncome').textContent=inc+" ر.س"; document.getElementById('kpiExpense').textContent=exp+" ر.س"; document.getElementById('kpiNet').textContent=(inc-exp)+" ر.س";
+<div class="bottom-nav-wrap">
+  <nav class="bottom-nav">
+    <div class="nav-item active" id="nav-home" onclick="switchPage('home')"><span>🏠</span><span>الرئيسية</span></div>
+    <div class="nav-item" id="nav-clients" onclick="switchPage('clients')"><span>👥</span><span>المشتركون</span></div>
+    <div class="nav-item" id="nav-fleet" onclick="switchPage('fleet')"><span>🚐</span><span>الأسطول</span></div>
+    <div class="nav-item" id="nav-accounts" onclick="switchPage('accounts')"><span>💳</span><span>الحسابات</span></div>
+  </nav>
+</div>
+
+<script>
+  const CLOUD_URL = "https://google.com";
+  let appData = JSON.parse(localStorage.getItem('maidan_data')) || { pin:"2026", vehicles:[], accounts:[], clients:[] };
+  document.getElementById('accDate').valueAsDate = new Date();
+  function unlockApp() {
+    if (document.getElementById('pinInput').value.trim() === String(appData.pin)) { document.getElementById('lockScreen').style.display='none'; syncFromCloud(); }
+    else { document.getElementById('lockError').style.display='block'; }
+  }
+  function lockApp() { document.getElementById('pinInput').value=''; document.getElementById('lockScreen').style.display='flex'; }
+  function switchPage(id) {
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page-'+id).classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    if(document.getElementById('nav-'+id)) document.getElementById('nav-'+id).classList.add('active');
+  }
+  function openQuickAccount(t) { document.getElementById('accType').value=t; switchPage('accounts'); }
+  async function saveAll() {
+    localStorage.setItem('maidan_data', JSON.stringify(appData)); renderAll();
+    try { await fetch(CLOUD_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(appData) }); document.getElementById('syncStatus').textContent="☁️ محفوظ في Google"; } catch(e){}
+  }
+  async function syncFromCloud() {
+    try {
+      const res = await fetch(CLOUD_URL); const d = await res.json();
+      if(d && (d.vehicles||d.accounts||d.clients)) { appData={pin:d.pin||"2026", vehicles:d.vehicles||[], accounts:d.accounts||[], clients:d.clients||[]}; localStorage.setItem('maidan_data',JSON.stringify(appData)); }
+    } catch(e){} renderAll();
+  }
+  function addVehicle() { const p=document.getElementById('vPlate').value.trim(); if(!p)return; appData.vehicles.unshift({id:Date.now(), plate:p, model:document.getElementById('vModel').value, driver:document.getElementById('vDriver').value, expiry:document.getElementById('vExpiry').value}); saveAll(); }
+  function addAccount() { const a=parseFloat(document.getElementById('accAmount').value), t=document.getElementById('accTitle').value.trim(); if(!a||!t)return; appData.accounts.unshift({id:Date.now(), type:document.getElementById('accType').value, amount:a, title:t, date:document.getElementById('accDate').value}); saveAll(); }
+  function addClient() { const n=document.getElementById('cName').value.trim(); if(!n)return; appData.clients.unshift({id:Date.now(), name:n, phone:document.getElementById('cPhone').value, plan:document.getElementById('cPlan').value, fee:parseFloat(document.getElementById('cFee').value)||0}); saveAll(); }
+  function del(s,id) { appData[s]=appData[s].filter(x=>x.id!==id); saveAll(); }
+  function changePin() { const p=document.getElementById('newPinInput').value.trim(); if(p.length>=4){appData.pin=p; saveAll(); alert("تم الحفظ");} }
+  function renderAll() {
+    let inc=0, exp=0; appData.accounts.forEach(a=>a.type==='إيراد'?inc+=Number(a.amount):exp+=Number(a.amount));
+    document.getElementById('kpiIncome').textContent=inc+" ر.س"; document.getElementById('kpiExpense').textContent=exp+" ر.س"; document.getElementById('kpiNet').textContent=(inc-exp)+" ر.س";
+    document.getElementById('subFleet').textContent=appData.vehicles.length+" مركبات"; document.getElementById('subAccounts').textContent=appData.accounts.length+" قيود"; document.getElementById('subClients').textContent=appData.clients.length+" مشتركين";
+    document.getElementById('vehiclesList').innerHTML=appData.vehicles.map(v=>`<div class="list-item"><div><strong>${v.plate}</strong> (${v.model||''})<br><small>${v.driver||''} • ${v.expiry||''}</small></div><button class="del-btn" onclick="del('vehicles',${v.id})">حذف</button></div>`).join('');
+    document.getElementById('accountsList').innerHTML=appData.accounts.map(a=>`<div class="list-item"><div><strong>${a.title}</strong><br><small>${a.date||''}</small></div><div><span class="pill ${a.type==='إيراد'?'pill-green':'pill-red'}">${a.amount} ر.س</span> <button class="del-btn" onclick="del('accounts',${a.id})">حذف</button></div></div>`).join('');
+    document.getElementById('clientsList').innerHTML=appData.clients.map(c=>`<div class="list-item"><div><strong>${c.name}</strong><br><small>${c.phone||''} • ${c.plan||''} (${c.fee} ر.س)</small></div><button class="del-btn" onclick="del('clients',${c.id})">حذف</button></div>`).join('');
+  }
+  renderAll();
+</script>
+</body>
+</html>
