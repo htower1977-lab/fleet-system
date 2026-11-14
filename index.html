@@ -53,9 +53,26 @@ td{padding:11px;border-bottom:1px solid var(--bd)}
   </div>
   <div class="hide-m" style="background:#F8FAFC;padding:12px;border-radius:12px;font-size:11.5px;color:var(--m)"><b style="color:var(--t);display:block;margin-bottom:3px">نقل مشتركات</b>إدارة السائقون والوثائق والحسابات في مكان واحد<button class="b2" style="width:100%;margin-top:8px" onclick="out()">قفل النظام</button></div>
 </aside>
-
 <main>
-<div id="p-hm" class="pg ac">
+ <div id="p-st" class="pg">
+  <div class="cd">
+    <h4 style="margin-bottom:12px">🎨 اختر ثيم وألوان التطبيق</h4>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px">
+      <button class="b2" style="border-right:6px solid #0F172A" onclick="thm('#0F172A','#1E293B','#2563EB')">الكحلي والأزرق (الافتراضي)</button>
+      <button class="b2" style="border-right:6px solid #18181B" onclick="thm('#18181B','#27272A','#EA580C')">الفحمي والبرتقالي</button>
+      <button class="b2" style="border-right:6px solid #164E63" onclick="thm('#164E63','#155E75','#0284C7')">الأزرق البترولي الهادئ</button>
+      <button class="b2" style="border-right:6px solid #312E81" onclick="thm('#312E81','#3730A3','#4F46E5')">النيلي الملكي</button>
+    </div>
+    <h4 style="margin-bottom:12px">⚙️ الأمان والمزامنة</h4>
+    <div class="fm">
+      <input id="np" class="in" placeholder="رمز جديد (الحالي 2026)">
+      <button class="b1" onclick="cp()">حفظ الرمز</button>
+      <button class="b2" onclick="sy()">🔄 تحديث من Google</button>
+      <button class="b2" onclick="out()">🔒 قفل الشاشة</button>
+    </div>
+  </div>
+</div>
+
   <div class="hero">
     <div><span style="background:rgba(37,99,235,.3);color:#93C5FD;padding:3px 10px;border-radius:20px;font-size:12px" id="sy">☁️ متزامن مع Google</span><div style="font-size:13px;color:#94A3B8;margin-top:8px">صافي ربح الشهر بعد المصروفات</div><div id="kn" style="font-size:32px;font-weight:700;color:#60A5FA;margin:4px 0 12px">0 ر.س</div><button class="bt" style="width:auto;padding:9px 18px" onclick="go('ac')">تسجيل دفعة ←</button></div>
     <div class="sub-kpis"><div class="sk"><small>الإيراد</small><b id="ki" style="color:#4ADE80">0</b></div><div class="sk"><small>المصروف</small><b id="ke" style="color:#F87171">0</b></div></div>
