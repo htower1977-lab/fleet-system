@@ -1,136 +1,177 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title>ميدان العز للنقليات • مساحة الإدارة</title>
-<link href="https://googleapis.com" rel="stylesheet">
-<style>
-  :root{--p:#253C2E;--p2:#1A2C21;--a:#D4B679;--bg:#F7F5F0;--c:#FFFFFF;--t:#1D2922;--m:#6E7A73;--r:#D94343;--g:#248A52}
-  *{box-sizing:border-box;margin:0;padding:0;font-family:'IBM Plex Sans Arabic',sans-serif;-webkit-tap-highlight-color:transparent}
-  body{background:var(--bg);color:var(--t);padding-bottom:115px;min-height:100vh}
-  #lock{position:fixed;inset:0;background:linear-gradient(160deg,var(--p2),var(--p));z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;color:#fff}
-  .lc{background:rgba(255,255,255,.07);backdrop-filter:blur(20px);border:1px solid rgba(212,182,121,.35);border-radius:30px;padding:34px 24px;width:100%;max-width:350px;text-align:center}
-  .li{width:100%;padding:14px;margin:18px 0 12px;border-radius:15px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.25);color:#fff;font-size:22px;text-align:center;letter-spacing:6px;outline:none}
-  .lb{width:100%;padding:14px;border-radius:15px;border:none;background:linear-gradient(135deg,#DFC286,#B8934A);color:var(--p2);font-weight:700;font-size:16px;cursor:pointer}
-  header{background:var(--p);color:#fff;padding:18px 20px 22px;display:flex;justify-content:space-between;align-items:center}
-  .ib{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.04);border:1.3px solid rgba(212,182,121,.5);color:var(--a);cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center}
-  .ib.ring{box-shadow:0 0 0 4px rgba(212,182,121,.15)}
-  .dot{position:absolute;top:9px;right:10px;width:7px;height:7px;background:#FF5A5A;border-radius:50%;display:none}
-  main{max-width:540px;margin:0 auto;padding:18px 16px}
-  .slogan{text-align:center;color:var(--p);font-size:22px;font-weight:700;margin:4px 0 18px}
-  .cd{background:var(--c);border-radius:24px;padding:20px;box-shadow:0 8px 26px rgba(37,60,46,.05);border:1px solid rgba(37,60,46,.06);margin-bottom:20px}
-  .hero-row{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:18px}
-  .van-card{width:136px;height:96px;border-radius:18px;background:linear-gradient(135deg,#F8EBD4,#F1DEC0);display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:8px}
-  .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .b1{background:var(--p);color:#fff;border:none;padding:13px;border-radius:15px;font-weight:600;cursor:pointer;width:100%;font-size:15px}
-  .b2{background:#fff;color:var(--p);border:1.5px solid rgba(37,60,46,.28);padding:13px;border-radius:15px;font-weight:600;cursor:pointer;width:100%;font-size:15px}
-  .sec-title{display:flex;align-items:center;gap:8px;color:var(--p);font-size:17px;font-weight:700;margin-bottom:14px}
-  .sec-title::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--a)}
-  .dc{background:var(--c);border-radius:22px;padding:24px 12px;text-align:center;border:1px solid rgba(37,60,46,.05);box-shadow:0 6px 20px rgba(37,60,46,.03);cursor:pointer;transition:.15s}
-  .dc:active{transform:scale(.97)}
-  .di{width:54px;height:54px;border-radius:50%;background:var(--p);color:var(--a);display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
-  .lbl{font-size:13px;font-weight:600;color:var(--p);margin-bottom:4px;display:block}
-  .in{width:100%;padding:11px 12px;border-radius:12px;border:1px solid rgba(37,60,46,.18);background:#FAF9F6;margin-bottom:10px;font-size:14px;outline:none}
-  .it{background:var(--c);border-radius:16px;padding:14px;margin-bottom:9px;border:1px solid rgba(37,60,46,.07);display:flex;justify-content:space-between;align-items:center;gap:8px}
-  .pl{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600}
-  .pg-g{background:rgba(36,138,82,.12);color:var(--g)}.pg-r{background:rgba(217,67,67,.12);color:var(--r)}.pg-a{background:rgba(212,182,121,.2);color:#8A6826}
-  .dl{background:rgba(217,67,67,.1);color:var(--r);border:none;padding:6px 10px;border-radius:9px;font-size:12px;font-weight:600;cursor:pointer}
-  .ok{background:rgba(36,138,82,.12);color:var(--g);border:none;padding:6px 10px;border-radius:9px;font-size:12px;font-weight:600;cursor:pointer}
-  .nv{position:fixed;bottom:14px;left:14px;right:14px;max-width:500px;margin:0 auto;background:var(--p);border-radius:24px;padding:10px 8px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;z-index:90;box-shadow:0 12px 30px rgba(26,44,33,.28)}
-  .ni{color:rgba(255,255,255,.65);font-size:12px;cursor:pointer;padding:6px 4px;border-radius:14px;display:flex;flex-direction:column;align-items:center;gap:4px}
-  .ni.act{color:var(--a);background:rgba(255,255,255,.07);font-weight:700}
-  .pg{display:none}.pg.act{display:block}
-</style>
-</head>
-<body>
-<div id="lock"><div class="lc"><div style="font-size:34px;margin-bottom:8px">🔐</div><h2 style="color:var(--a)">ميدان العز للنقليات</h2><p style="font-size:13px;opacity:.75;margin-top:4px">مساحة الإدارة السحابية الآمنة</p><input type="password" id="pin" class="li" placeholder="2026" inputmode="numeric"><button class="lb" onclick="go()">دخول النظام</button><p id="err" style="color:#FF7B7B;font-size:12px;margin-top:8px;display:none">الرمز غير صحيح</p></div></div>
-<header>
-  <div style="text-align:right">
-    <h1 style="font-size:22px;color:var(--a);font-weight:700;line-height:1.2">ميدان العز</h1>
-    <p style="font-size:12.5px;color:rgba(255,255,255,.85);margin-top:3px">للنقليات • مساحة الإدارة</p>
-  </div>
-  <div style="display:flex;gap:10px;align-items:center">
-    <button class="ib" onclick="pg('set')" title="الإعدادات"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
-    <button class="ib ring" onclick="pg('alerts')" title="التنبيهات"><span class="dot" id="dot"></span><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
-  </div>
-</header>
-
-<main>
-  <div id="pg-home" class="pg act">
-    <h2 class="slogan">كل رحلة تبدأ بتنظيم أفضل</h2>
-    <div class="cd">
-      <div class="hero-row">
-        <div style="text-align:right">
-          <h3 style="color:var(--p);font-size:19px;font-weight:700;line-height:1.3">ميدان العز<br>للنقليات</h3>
-          <p style="font-size:13.5px;color:var(--m);margin-top:6px;line-height:1.5">مساحة واضحة لإدارة<br>النقل</p>
-        </div>
-        <div class="van-card">
-          <svg width="114" height="68" viewBox="0 0 120 70" fill="none">
-            <rect x="8" y="18" width="84" height="34" rx="8" fill="#FFFFFF" stroke="#253C2E" stroke-width="2.2"/>
-            <path d="M92 23H105C109 23 113 27 114 32L116 44C116 48 113 52 109 52H92V23Z" fill="#FFFFFF" stroke="#253C2E" stroke-width="2.2"/>
-            <rect x="18" y="24" width="19" height="12" rx="3" fill="#D5E0D9"/><rect x="42" y="24" width="19" height="12" rx="3" fill="#D5E0D9"/><rect x="66" y="24" width="19" height="12" rx="3" fill="#D5E0D9"/>
-            <path d="M95 26H105L109 36H95V26Z" fill="#D5E0D9"/>
-            <line x1="10" y1="42" x2="114" y2="42" stroke="#D4B679" stroke-width="2.5"/>
-            <circle cx="30" cy="53" r="8.5" fill="#253C2E"/><circle cx="30" cy="53" r="3.5" fill="#D4B679"/>
-            <circle cx="95" cy="53" r="8.5" fill="#253C2E"/><circle cx="95" cy="53" r="3.5" fill="#D4B679"/>
-          </svg>
-        </div>
-      </div>
-      <div class="g2">
-        <button class="b1" onclick="qacc('إيراد')">تسجيل إيراد</button>
-        <button class="b2" onclick="qacc('مصروف')">تسجيل مصروف</button>
-      </div>
-    </div>
-
-    <div class="sec-title">اختر وجهتك</div>
-    <div class="g2">
-      <div class="dc" onclick="pg('fleet')"><div class="di"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 11h16M8 17v3M16 17v3"/><circle cx="8.5" cy="14" r="1"/><circle cx="15.5" cy="14" r="1"/></svg></div><h4 style="font-size:16.5px;color:var(--t)">الأسطول</h4></div>
-      <div class="dc" onclick="pg('acc')"><div class="di"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div><h4 style="font-size:16.5px;color:var(--t)">الحسابات</h4></div>
-      <div class="dc" onclick="pg('alerts')"><div class="di"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div><h4 style="font-size:16.5px;color:var(--t)">التنبيهات</h4></div>
-      <div class="dc" onclick="pg('cli')"><div class="di"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h4 style="font-size:16.5px;color:var(--t)">المشتركون</h4></div>
-    </div>
-
-    <div style="text-align:center;margin-top:22px;font-size:12.5px;color:var(--m)">
-      <p id="st">✓ تفاصيل سجلك داخل أقسامه • متزامن مع Google</p>
-      <button onclick="out()" style="background:none;border:none;color:var(--p);font-weight:700;margin-top:10px;cursor:pointer;font-size:14px">🚪 تسجيل الخروج</button>
-    </div>
-  </div>
-  <div id="pg-fleet" class="pg"><div class="sec-title">إدارة الأسطول والوثائق</div><div class="cd"><div class="g2"><div><label class="lbl">رقم اللوحة</label><input id="vp" class="in" placeholder="أ ب ج 1234"></div><div><label class="lbl">نوع المركبة</label><input id="vm" class="in" placeholder="فان / دينا"></div></div><div class="g2"><div><label class="lbl">اسم السائق</label><input id="vd" class="in" placeholder="السائق المستلم"></div><div><label class="lbl">انتهاء الاستمارة/التأمين</label><input id="vx" type="date" class="in"></div></div><button class="b1" onclick="addV()">+ إضافة مركبة للأسطول</button></div><div id="lv"></div></div>
-  <div id="pg-acc" class="pg"><div class="sec-title">الحسابات والتقارير المالية</div><div class="cd" style="background:#FAF8F3;text-align:center"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><div><small style="color:var(--m)">الإيرادات</small><div id="ki" style="font-weight:700;color:var(--g)">0</div></div><div><small style="color:var(--m)">المصروفات</small><div id="ke" style="font-weight:700;color:var(--r)">0</div></div><div><small style="color:var(--m)">الصافي</small><div id="kn" style="font-weight:700;color:var(--p)">0</div></div></div></div><div class="cd"><div class="g2"><div><label class="lbl">النوع</label><select id="at" class="in"><option value="إيراد">إيراد (+)</option><option value="مصروف">مصروف (-)</option></select></div><div><label class="lbl">التصنيف</label><select id="ac" class="in"><option value="عقد نقل">عقد نقل / اشتراك</option><option value="وقود">وقود وديزل</option><option value="صيانة">صيانة وقطع</option><option value="رواتب">رواتب سائقين</option><option value="أخرى">أخرى</option></select></div></div><div class="g2"><div><label class="lbl">المبلغ (ر.س)</label><input id="aa" type="number" class="in" placeholder="0.00"></div><div><label class="lbl">التاريخ</label><input id="ad" type="date" class="in"></div></div><label class="lbl">البيان والتفاصيل</label><input id="al" class="in" placeholder="وصف العملية"><button class="b1" onclick="addA()">حفظ القيد المالي</button></div><div class="cd" style="background:#FAF8F3"><b style="color:var(--p);font-size:13px">🧮 حاسبة الضريبة (15%)</b><div class="g2" style="margin-top:8px"><input id="vi" type="number" class="in" style="margin:0" placeholder="المبلغ" oninput="cvat()"><div id="vr" style="display:flex;align-items:center;font-weight:700;color:var(--p);font-size:13px">الإجمالي: 0.00 ر.س</div></div></div><div id="la"></div></div>
-  <div id="pg-cli" class="pg"><div class="sec-title">المشتركون والفواتير</div><div class="cd"><div class="g2"><div><label class="lbl">اسم العميل</label><input id="cn" class="in" placeholder="الاسم أو الجهة"></div><div><label class="lbl">الجوال</label><input id="cp" class="in" placeholder="05xxxxxxxx"></div></div><div class="g2"><div><label class="lbl">خط السير / الاشتراك</label><input id="cl" class="in" placeholder="توصيل شهري"></div><div><label class="lbl">قيمة الاشتراك (ر.س)</label><input id="cf" type="number" class="in" placeholder="0.00"></div></div><button class="b1" onclick="addC()">+ إضافة مشترك وفاتورة</button></div><div id="lc"></div></div>
-  <div id="pg-alerts" class="pg"><div class="sec-title">مركز التنبيهات العاجلة</div><div id="lal"></div></div>
-  <div id="pg-set" class="pg"><div class="sec-title">الإعدادات والأمان</div><div class="cd"><label class="lbl">تغيير الرمز السري (الحالي: 2026)</label><input id="np" class="in" placeholder="أدخل الرمز الجديد"><button class="b1" style="margin-bottom:10px" onclick="cpin()">حفظ الرمز الجديد</button><button class="b2" style="margin-bottom:10px" onclick="sync()">🔄 تحديث ومزامنة من Google الآن</button><button class="b2" onclick="bkp()">💾 تحميل نسخة احتياطية كاملة</button></div></div>
-</main>
-
-<nav class="nv">
-  <div class="ni act" id="n-home" onclick="pg('home')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>الرئيسية</span></div>
-  <div class="ni" id="n-cli" onclick="pg('cli')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>المشتركون</span></div>
-  <div class="ni" id="n-fleet" onclick="pg('fleet')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 11h16M8 17v3M16 17v3"/></svg><span>الأسطول</span></div>
-  <div class="ni" id="n-acc" onclick="pg('acc')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="3"/><line x1="2" y1="10" x2="22" y2="10"/></svg><span>الحسابات</span></div>
-</nav>
-
 <script>
-const U="https://google.com";
-let D=JSON.parse(localStorage.getItem('maidan_data'))||{pin:"2026",vehicles:[],accounts:[],clients:[]};
-document.getElementById('ad').valueAsDate=new Date();
-document.getElementById('pin').addEventListener('keyup',e=>{if(e.key==='Enter')go()});
-function go(){let v=document.getElementById('pin').value.trim();if(v===String(D.pin)||v==="2026"){document.getElementById('lock').style.display='none';sync()}else{document.getElementById('err').style.display='block'}}
-function out(){document.getElementById('pin').value='';document.getElementById('lock').style.display='flex'}
-function pg(x){document.querySelectorAll('.pg').forEach(e=>e.classList.remove('act'));document.getElementById('pg-'+x).classList.add('act');document.querySelectorAll('.ni').forEach(e=>e.classList.remove('act'));if(document.getElementById('n-'+x))document.getElementById('n-'+x).classList.add('act');window.scrollTo(0,0)}
-function qacc(t){document.getElementById('at').value=t;pg('acc')}
-async function save(){localStorage.setItem('maidan_data',JSON.stringify(D));ren();document.getElementById('st').textContent="⏳ جاري الحفظ في السحابة...";try{await fetch(U,{method:'POST',mode:'no-cors',body:JSON.stringify(D)});document.getElementById('st').textContent="✓ تفاصيل سجلك داخل أقسامه • محفوظ في Google"}catch(e){}}
-async function sync(){try{let r=await fetch(U),j=await r.json();if(j&&(j.vehicles||j.accounts||j.clients)){D={pin:j.pin||"2026",vehicles:j.vehicles||[],accounts:j.accounts||[],clients:j.clients||[]};localStorage.setItem('maidan_data',JSON.stringify(D))}}catch(e){}ren()}
-function addV(){let p=document.getElementById('vp').value.trim();if(!p)return alert("أدخل رقم اللوحة");D.vehicles.unshift({id:Date.now(),plate:p,model:document.getElementById('vm').value,driver:document.getElementById('vd').value,expiry:document.getElementById('vx').value});document.getElementById('vp').value='';document.getElementById('vm').value='';document.getElementById('vd').value='';save()}
-function addA(){let a=parseFloat(document.getElementById('aa').value),t=document.getElementById('al').value.trim();if(!a||!t)return alert("أدخل المبلغ والبيان");D.accounts.unshift({id:Date.now(),type:document.getElementById('at').value,cat:document.getElementById('ac').value,amount:a,title:t,date:document.getElementById('ad').value});document.getElementById('aa').value='';document.getElementById('al').value='';save()}
-function addC(){let n=document.getElementById('cn').value.trim();if(!n)return alert("أدخل اسم العميل");D.clients.unshift({id:Date.now(),name:n,phone:document.getElementById('cp').value,plan:document.getElementById('cl').value,fee:parseFloat(document.getElementById('cf').value)||0,paid:false});document.getElementById('cn').value='';document.getElementById('cp').value='';document.getElementById('cl').value='';document.getElementById('cf').value='';save()}
-function payC(id){let c=D.clients.find(x=>x.id===id);if(c){c.paid=!c.paid;save()}}
-function del(k,i){if(confirm("تأكيد الحذف؟")){D[k]=D[k].filter(x=>x.id!==i);save()}}
-function cpin(){let p=document.getElementById('np').value.trim();if(p.length>=4){D.pin=p;document.getElementById('np').value='';save();alert("تم حفظ الرمز الجديد")}}
-function cvat(){let v=parseFloat(document.getElementById('vi').value)||0;document.getElementById('vr').textContent="الإجمالي: "+(v*1.15).toFixed(2)+" ر.س"}
-function bkp(){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(D,null,2)],{type:'application/json'}));a.download='maidan_backup.json';a.click()}
-function ren(){let i=0,e=0,al=[],now=new Date();D.accounts.forEach(a=>a.type==='إيراد'?i+=Number(a.amount):e+=Number(a.amount));document.getElementById('ki').textContent=i.toLocaleString()+" ر.س";document.getElementById('ke').textContent=e.toLocaleString()+" ر.س";document.getElementById('kn').textContent=(i-e).toLocaleString()+" ر.س";document.getElementById('lv').innerHTML=D.vehicles.map(v=>{let b='بدون تاريخ';if(v.expiry){let df=Math.ceil((new Date(v.expiry)-now)/864e5);if(df<=30){b=<span class="pl pg-r">${df<0?'منتهي منذ '+Math.abs(df)+' يوم':'متبقي '+df+' يوم'}</span>;al.push(<div class="it"><div><b>⚠️ مركبة ${v.plate}</b><br><small>السائق: ${v.driver||'-'}</small></div>${b}</div>)}else{b=<span class="pl pg-g">سارية (${df} يوم)</span>}}return<div class="it"><div><b>${v.plate}</b> • ${v.model||''}<br><small>السائق: ${v.driver||'-'}</small><div style="margin-top:4px">${b}</div></div><button class="dl" onclick="del('vehicles',${v.id})">حذف</button></div>}).join('');document.getElementById('la').innerHTML=D.accounts.map(a=><div class="it"><div><b>${a.title}</b> <span class="pl pg-a">${a.cat||''}</span><br><small>${a.date||''}</small></div><div><span class="pl ${a.type==='إيراد'?'pg-g':'pg-r'}">${a.type==='إيراد'?'+':'-'}${Number(a.amount).toLocaleString()} ر.س</span> <button class="dl" onclick="del('accounts',${a.id})">حذف</button></div></div>).join('');document.getElementById('lc').innerHTML=D.clients.map(c=>{if(!c.paid)al.push(<div class="it"><div><b>💳 فاتورة غير مسددة: ${c.name}</b><br><small>${c.plan||''}</small></div><span class="pl pg-r">${c.fee} ر.س</span></div>);return<div class="it"><div><b>${c.name}</b> • <small>${c.phone||''}</small><br><small>${c.plan||''} (${c.fee} ر.س)</small><div style="margin-top:4px"><span class="pl ${c.paid?'pg-g':'pg-r'}">${c.paid?'مسدد ✓':'غير مسدد'}</span></div></div><div style="display:flex;gap:5px"><button class="ok" onclick="payC(${c.id})">${c.paid?'إلغاء':'سداد'}</button><button class="dl" onclick="del('clients',${c.id})">حذف</button></div></div>}).join('');document.getElementById('dot').style.display=al.length?'block':'none';document.getElementById('lal').innerHTML=al.join('')||'✅ جميع الوثائق والفواتير منتظمة'}
+const U = "https://google.com";
+let D = JSON.parse(localStorage.getItem('maidan_data')) || { pin: "2026", vehicles: [], accounts: [], clients: [] };
+document.getElementById('ad').valueAsDate = new Date();
+document.getElementById('pin').addEventListener('keyup', function(e) { if (e.key === 'Enter') go(); });
+
+function go() {
+  let v = document.getElementById('pin').value.trim();
+  if (v === String(D.pin) || v === "2026") {
+    document.getElementById('lock').style.display = 'none';
+    sync();
+  } else {
+    document.getElementById('err').style.display = 'block';
+  }
+}
+
+function out() {
+  document.getElementById('pin').value = '';
+  document.getElementById('lock').style.display = 'flex';
+}
+
+function pg(x) {
+  document.querySelectorAll('.pg').forEach(e => e.classList.remove('act'));
+  document.getElementById('pg-' + x).classList.add('act');
+  document.querySelectorAll('.ni').forEach(e => e.classList.remove('act'));
+  if (document.getElementById('n-' + x)) document.getElementById('n-' + x).classList.add('act');
+  window.scrollTo(0, 0);
+}
+
+function qacc(t) {
+  document.getElementById('at').value = t;
+  pg('acc');
+}
+
+async function save() {
+  localStorage.setItem('maidan_data', JSON.stringify(D));
+  ren();
+  document.getElementById('st').textContent = "⏳ جاري الحفظ...";
+  try {
+    await fetch(U, { method: 'POST', mode: 'no-cors', body: JSON.stringify(D) });
+    document.getElementById('st').textContent = "✓ محفوظ في Google";
+  } catch (e) {}
+}
+
+async function sync() {
+  try {
+    let r = await fetch(U);
+    let j = await r.json();
+    if (j && (j.vehicles || j.accounts || j.clients)) {
+      D = { pin: j.pin || "2026", vehicles: j.vehicles || [], accounts: j.accounts || [], clients: j.clients || [] };
+      localStorage.setItem('maidan_data', JSON.stringify(D));
+    }
+  } catch (e) {}
+  ren();
+}
+
+function addV() {
+  let p = document.getElementById('vp').value.trim();
+  if (!p) return alert("أدخل رقم اللوحة");
+  D.vehicles.unshift({
+    id: Date.now(),
+    plate: p,
+    model: document.getElementById('vm').value,
+    driver: document.getElementById('vd').value,
+    expiry: document.getElementById('vx').value
+  });
+  document.getElementById('vp').value = '';
+  document.getElementById('vm').value = '';
+  document.getElementById('vd').value = '';
+  save();
+}
+
+function addA() {
+  let a = parseFloat(document.getElementById('aa').value);
+  let t = document.getElementById('al').value.trim();
+  if (!a || !t) return alert("أدخل المبلغ والبيان");
+  D.accounts.unshift({
+    id: Date.now(),
+    type: document.getElementById('at').value,
+    cat: document.getElementById('ac').value,
+    amount: a,
+    title: t,
+    date: document.getElementById('ad').value
+  });
+  document.getElementById('aa').value = '';
+  document.getElementById('al').value = '';
+  save();
+}
+
+function addC() {
+  let n = document.getElementById('cn').value.trim();
+  if (!n) return alert("أدخل اسم العميل");
+  D.clients.unshift({
+    id: Date.now(),
+    name: n,
+    phone: document.getElementById('cp').value,
+    plan: document.getElementById('cl').value,
+    fee: parseFloat(document.getElementById('cf').value) || 0,
+    paid: false
+  });
+  document.getElementById('cn').value = '';
+  document.getElementById('cp').value = '';
+  document.getElementById('cl').value = '';
+  document.getElementById('cf').value = '';
+  save();
+}
+
+function payC(id) {
+  let c = D.clients.find(x => x.id === id);
+  if (c) { c.paid = !c.paid; save(); }
+}
+
+function del(k, i) {
+  if (confirm("تأكيد الحذف؟")) {
+    D[k] = D[k].filter(x => x.id !== i);
+    save();
+  }
+}
+
+function cpin() {
+  let p = document.getElementById('np').value.trim();
+  if (p.length >= 4) {
+    D.pin = p;
+    document.getElementById('np').value = '';
+    save();
+    alert("تم حفظ الرمز الجديد");
+  }
+}
+
+function cvat() {
+  let v = parseFloat(document.getElementById('vi').value) || 0;
+  document.getElementById('vr').textContent = "الإجمالي: " + (v * 1.15).toFixed(2) + " ر.س";
+}
+
+function bkp() {
+  let a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(D, null, 2)], { type: 'application/json' }));
+  a.download = 'maidan_backup.json';
+  a.click();
+}
+function ren() {
+  let i = 0, e = 0, al = [], now = new Date();
+  D.accounts.forEach(a => a.type === 'إيراد' ? i += Number(a.amount) : e += Number(a.amount));
+  document.getElementById('ki').textContent = i.toLocaleString() + " ر.س";
+  document.getElementById('ke').textContent = e.toLocaleString() + " ر.س";
+  document.getElementById('kn').textContent = (i - e).toLocaleString() + " ر.س";
+
+  document.getElementById('lv').innerHTML = D.vehicles.map(v => {
+    let b = '<span class="pl pg-a">بدون تاريخ</span>';
+    if (v.expiry) {
+      let df = Math.ceil((new Date(v.expiry) - now) / 864e5);
+      if (df <= 30) {
+        b = `<span class="pl pg-r">${df < 0 ? 'منتهي منذ ' + Math.abs(df) + ' يوم' : 'متبقي ' + df + ' يوم'}</span>`;
+        al.push(`<div class="it"><div><b>⚠️ مركبة ${v.plate}</b><br><small>السائق: ${v.driver || '-'}</small></div>${b}</div>`);
+      } else {
+        b = `<span class="pl pg-g">سارية (${df} يوم)</span>`;
+      }
+    }
+    return `<div class="it"><div><b>${v.plate}</b> • ${v.model || ''}<br><small>السائق: ${v.driver || '-'}</small><div style="margin-top:4px">${b}</div></div><button class="dl" onclick="del('vehicles',${v.id})">حذف</button></div>`;
+  }).join('');
+
+  document.getElementById('la').innerHTML = D.accounts.map(a =>
+    `<div class="it"><div><b>${a.title}</b> <span class="pl pg-a">${a.cat || ''}</span><br><small>${a.date || ''}</small></div><div><span class="pl ${a.type === 'إيراد' ? 'pg-g' : 'pg-r'}">${a.type === 'إيراد' ? '+' : '-'}${Number(a.amount).toLocaleString()} ر.س</span> <button class="dl" onclick="del('accounts',${a.id})">حذف</button></div></div>`
+  ).join('');
+
+  document.getElementById('lc').innerHTML = D.clients.map(c => {
+    if (!c.paid) al.push(`<div class="it"><div><b>💳 فاتورة غير مسددة: ${c.name}</b><br><small>${c.plan || ''}</small></div><span class="pl pg-r">${c.fee} ر.س</span></div>`);
+    return `<div class="it"><div><b>${c.name}</b> • <small>${c.phone || ''}</small><br><small>${c.plan || ''} (${c.fee} ر.س)</small><div style="margin-top:4px"><span class="pl ${c.paid ? 'pg-g' : 'pg-r'}">${c.paid ? 'مسدد ✓' : 'غير مسدد'}</span></div></div><div style="display:flex;gap:5px"><button class="ok" onclick="payC(${c.id})">${c.paid ? 'إلغاء' : 'سداد'}</button><button class="dl" onclick="del('clients',${c.id})">حذف</button></div></div>`;
+  }).join('');
+
+  document.getElementById('dot').style.display = al.length ? 'block' : 'none';
+  document.getElementById('lal').innerHTML = al.join('') || '<div class="cd" style="text-align:center;color:var(--m)">✅ جميع الوثائق والفواتير منتظمة</div>';
+}
 ren();
-
-
+</script>
+</body>
+</html>
